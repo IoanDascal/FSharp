@@ -1,6 +1,22 @@
+(*
+Scrieti programul C/C++ corespunzator algoritmului dat. 
+
+citeste n (numar natural)
+z <- 0  
+p <- 1 
+┌ cat timp n>0 executa
+│  c <- n%10  
+│  n <- [n/10] 
+│┌ daca c%3=0 atunci 
+││   z <- z+p*(9-c) 
+││   p <- p*10 
+│└■
+└■
+scrie z  
+*)
 open System
 printf "Dati un numar intreg n="
-let n=int32(System.Console.ReadLine())
+let n=int32(Console.ReadLine())
 printfn "n =%i" n
 
 let rec sumCifre z n p=
