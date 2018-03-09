@@ -1,3 +1,10 @@
+(*
+    Se  considera o  coada în care initial  au  fost  introduse,  în  aceasta
+  ordine,  elementele  cu  valorile 1 si  2. Se noteaza cu AD(x) operatia 
+  prin care se adauga elementul cu valoarea x in  coada si  cu  EL operatia  
+  prin  care  se  elimina un  element  din  coada.  Câte elemente va contine     
+  coada în urma executarii secventei de operatii: AD(4);EL;EL;AD(5);EL;AD(3) ?
+ *)
 open System.Collections.Generic
 let coada=new Queue<int>()
 coada.Enqueue(1)
