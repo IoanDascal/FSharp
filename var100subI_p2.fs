@@ -1,14 +1,14 @@
 (*
-citeste a (numar natural, a<1000000000)
-┌ repeta
+read a (natural number , a<1000000000)
+┌ repeat
 │   b <- 0  
-│┌ cat timp a!=0 executa
+│┌ while a!=0 do
 ││   b <- b+a%10 
 ││   a <- [a/10] 
 │└■
 │   a <- b 
-└ pana_cand a<10 
-scrie b 
+└ until a<10 
+write b 
 *)
 
 
