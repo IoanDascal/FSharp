@@ -1,6 +1,9 @@
+(*
+    Compute the two biggest distinct prime numbers less or equal with n.
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
+printf " n="
+let n=int(Console.ReadLine())
 let lista=[]
 let rec prim nr div=
     match div with
