@@ -1,14 +1,30 @@
+(*
+ read n,k   (natural numbers n>0 , k>0) 
+ nr <- 0 
+ p <- 1 
+┌ while  n ≠ 0 and k ≠ 0 do
+│┌ if n%2 ≠ 0 then
+││   nr <- nr + [n/10]%10*p 
+││   p <- p*10 
+││ else
+││   k <- k-1 
+│└■
+│ n <- [n/10] 
+└■
+ write nr 
+*)
+
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dati k="
-let k=int(System.Console.ReadLine())
-let rec calcul n k p nr=
+printf " n="
+let n=int(Console.ReadLine())
+printf " k="
+let k=int(Console.ReadLine())
+let rec whileLoop n k p nr=
     match n<>0 && k<>0 with
     | false -> nr
     | true -> match n%2 with
-              | 0 -> calcul (n/10) (k-1) p nr 
-              | _ -> calcul (n/10) k (p*10) (nr+(n/10)%10*p )
+              | 0 -> whileLoop (n/10) (k-1) p nr 
+              | _ -> whileLoop (n/10) k (p*10) (nr+(n/10)%10*p )
 
-let res=calcul n k 1 0
+let res=whileLoop n k 1 0
 printfn "%i" res
