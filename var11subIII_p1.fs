@@ -1,27 +1,33 @@
+(*
+   Generate all possible sequences of five digits that contains  digits of  0 or 1. 
+   Each sequence must contain less than three successive digits of 0.
+   n=2  -> number of digits , 0 and 1
+   k=5  -> number of digit in a sequence
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dati k="
-let k=int(System.Console.ReadLine())
-let sol=Array.create 10 0
-let solutie p=
+printf " n="
+let n=int(Console.ReadLine())
+printf " k="
+let k=int(Console.ReadLine())
+let solution=Array.create 10 0
+let  completeSolution p=
     p=k
-let afiseaza p=
+let printSolution p=
     for i in 1..p do
-        printf "%i" sol.[i]
+        printf "%i" solution.[i]
     printfn ""
-let validare p=
+let validatePartialSolution p=
     match p<=2 with
     | true -> true
-    | false -> match (sol.[p-2]=0 && sol.[p-1]=0) with
+    | false -> match (solution.[p-2]=0 && solution.[p-1]=0) with
                | false -> true
-               | true -> sol.[p]<>0 
+               | true -> solution.[p]<>0 
 let rec backtracking p=
     for i in 0..n-1 do
-        sol.[p] <- i 
-        if (validare p) then
-            if (solutie p) then
-                afiseaza p
+        solution.[p] <- i 
+        if (validatePartialSolution p) then
+            if (completeSolution p) then
+                printSolution p
             else 
                 backtracking (p+1)
 
