@@ -2,7 +2,7 @@
    Generate all possible sequences of five digits that contains  digits of  0 or 1. 
    Each sequence must contain less than three successive digits of 0.
    n=2  -> number of digits , 0 and 1
-   k=5  -> number of digit in a sequence
+   k=5  -> number of digits in a sequence
 *)
 open System
 printf " n="
