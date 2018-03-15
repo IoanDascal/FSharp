@@ -1,17 +1,23 @@
+(*
+    a) Implement a function that computes the sum of all divisors
+    for an integer number.
+    b) Using the above function determine the prime numbers
+    from a sequence of n integers.
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-let sumaDiv x=
-    let rec suma sum div x=
-        match div with
-        | 1 -> sum+1
-        | div -> match x%div with
-                 | 0 -> suma (sum+div) (div-1) x
-                 | _ -> suma sum (div-1) x
-    suma 0 x x
+printf " n="
+let n=int(Console.ReadLine())
+let sumOfAllDivisors x=
+    let rec sum total divisor x=
+        match divisor with
+        | 1 -> total+1
+        | divisor -> match x%divisor with
+                     | 0 -> sum (total+divisor) (divisor-1) x
+                     | _ -> sum total (divisor-1) x
+    sum 0 x x
 
 for i in 1..n do
-    printf "Dati x="
-    let x=int(System.Console.ReadLine())
-    if (sumaDiv x=x+1) then printfn "Numarul %i este prim." x
-        else printfn "Numarul %i nu este prim." x
+    printf " x="
+    let x=int(Console.ReadLine())
+    if ((sumOfAllDivisors x)=x+1) then printfn "The number %i is prime." x
+        else printfn "The number %i is not prime." x
