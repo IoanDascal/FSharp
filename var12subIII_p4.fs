@@ -1,19 +1,24 @@
+(*
+    Each number in a list of n integers is a five-digit number.
+    Extract from list only numbers with all five digits equals.
+    Print them in increasing order.
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-let numere=[for i in 0..n-1 do
-                yield ( printf "num[%i]=" i
-                        int(System.Console.ReadLine()))]
-let cifraUnica x=
+printf " n="
+let n=int(Console.ReadLine())
+let numbers=[for i in 0..n-1 do
+                yield ( printf "numbers[%i]=" i
+                        int(Console.ReadLine()))]
+let uniqueDigit x=
     let c=x%10
-    let rec cifra nr cif fan=
+    let rec digit nr cif=
         match nr with
-        | 0 -> fan
+        | 0 -> true
         | _ -> match cif=c with
-               | true -> cifra (nr/10) (nr%10) fan
-               | false -> cifra (nr/10) (nr%10) false
-    cifra x (x%10) true 
-let res=List.choose (fun x -> match (cifraUnica x) with
+               | true -> digit (nr/10) (nr%10)
+               | false -> false
+    digit x (x%10)
+let res=List.choose (fun x -> match (uniqueDigit x) with
                               | true -> Some(x)
-                              | false -> None ) numere
+                              | false -> None ) numbers
 printfn "%A" (List.sort res)
