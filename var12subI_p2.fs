@@ -1,17 +1,29 @@
-open System
-printf "Dati x="
+(*
+ read x   ( natural number) 
+ y <- 0 
+┌ while x ≠ 0 do
+│┌ while x>9 do
+││   x <- [x/10] 
+│└■
+│ y <- y*10+x 
+│ read x 
+└■
+ write y 
+*)
+
+printf " x="
 let x=int(System.Console.ReadLine())
-let rec calcul x y=
+let rec whileLoop x y=
     match x with
     | 0 -> y
-    | _ -> let rec primaCifra x=
+    | _ -> let rec firstDigit x=
                match x>9 with
                | false -> x
-               | true -> primaCifra (x/10)
-           let y=y*10+primaCifra x
-           printf "Dati x="
+               | true -> firstDigit (x/10)
+           let y=y*10+firstDigit x
+           printf " x="
            let x=int(System.Console.ReadLine())
-           calcul x y
+           whileLoop x y
 
-let res=calcul x 0
+let res=whileLoop x 0
 printfn "%i" res
