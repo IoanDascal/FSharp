@@ -1,11 +1,14 @@
-let s="informatica"
-printf "%i  " s.Length
-let vocale="aeiou"
-let rec inlocuire (s:string) i=
-    let s=s.Replace(vocale.[i],'*')
+(*
+    Replace all vowels in a string with '*'
+*)
+let s="informatics is interesting"
+printfn "%i  " s.Length
+let vowels="aeiou"
+let rec replace (s:string) i=
+    let s=s.Replace(vowels.[i],'*')
     match i with
     | 0 -> s
-    | _ -> inlocuire s (i-1)
+    | _ -> replace s (i-1)
 
-let res=inlocuire s (vocale.Length-1)
+let res=replace s (vowels.Length-1)
 printfn "%s" res
