@@ -1,18 +1,25 @@
+(*
+    Generate a matrix with n rows and n columns so that:
+-  if j=n-i-1 then matrix[i][j]=0
+-  if j<n-i-1 then matrix[i][j]=j+1
+-  if j>n-i-1 then matrix[i][j]=n-i
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-let (|MaiMic|Egal|MaiMare|) (a, b)=
+printf " n="
+let n=int(Console.ReadLine())
+let (| Lower | Equal | Bigger |) (a, b)=
     match a<b with
-    | true -> MaiMic
+    | true -> Lower
     | false -> match a=b with
-               | true -> Egal
-               | false -> MaiMare
-let matrice=[|for i in 0..n-1 do
+               | true -> Equal
+               | false -> Bigger  
+let matrix=[|for i in 0..n-1 do
                   yield ([|for j in 0..n-1 do
                                match ((i+j), (n-1)) with
-                               | MaiMic -> yield (j+1)
-                               | Egal -> yield 0
-                               | MaiMare -> yield (n-i)|])|]
+                               | Lower -> yield (j+1)
+                               | Equal -> yield 0
+                               | Bigger -> yield (n-i)|])|]
 
-let res= matrice
-printfn "%A" res
+let res= matrix
+for line in matrix do
+    printfn "%A" line
