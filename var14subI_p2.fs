@@ -1,20 +1,36 @@
+(*
+ read x ( natural number)
+ n <- 0
+┌ while x≠0 do
+│ y <- x ; c <- 0
+│ ┌ while y>0 do
+│ │ ┌ if y%10>c then
+│ │ │    c <- y%10
+│ │ └■
+│ │  y <- [y/10]
+│ └■
+│ n <- n*10+c
+│ read x
+└■
+ write n
+*)
 open System
-printf "Dati x="
-let x=int(System.Console.ReadLine())
-let rec calculC y c=
+printf " x="
+let x=int(Console.ReadLine())
+let rec innerWhileLoop y c=
     match y with
     | 0 -> c
     | _ -> match y%10>c with
-            | true -> calculC (y/10) (y%10)
-            | false -> calculC (y/10) c
-let rec calcul x n=
+            | true -> innerWhileLoop (y/10) (y%10)
+            | false -> innerWhileLoop (y/10) c
+let rec whileLoop x n=
     match x with
     | 0 -> n
-    | _ -> let c=calculC x 0
+    | _ -> let c=innerWhileLoop x 0
            printf "Dati x="
-           let x=int(System.Console.ReadLine())
-           calcul x (n*10+ c)
+           let x=int(Console.ReadLine())
+           whileLoop x (n*10+ c)
 
-let res=calcul x 0
+let res=whileLoop x 0
 printfn "%i" res
             
