@@ -1,21 +1,24 @@
+(*
+    Given an array of n integers. At what index should be the
+    first item in the sorted array.
+*)
 open System.IO
 let input=try
              File.OpenText "nrVar174.txt"
           with
               | :? FileNotFoundException -> printfn "Error: File nrVar174.txt not found";exit(1)
 
-let n=int(input.ReadLine())   //  NU am nevoie de n
-let citeste=
-    let sir=input.ReadToEnd()
-    let sir=sir.Replace(System.Environment.NewLine," ")
-    let res=sir.Split([|' '|])
-    res 
+let readFile=
+    let inputString=input.ReadToEnd()
+    let inputString=inputString.Replace(System.Environment.NewLine," ")
+    let inputArray=inputString.Split([|' '|])
+    inputArray 
 
-let numere=citeste |> Array.map int
-let poz=Array.countBy (fun x -> x<numere.[0]) numere
+let numbers=readFile |> Array.map int
+let positions=Array.countBy (fun x -> x<numbers.[0]) numbers
 let res=
-    match fst poz.[0] with
-    | true -> printfn "%i" (snd poz.[0]+1)
-    | false -> printfn "%i" (snd poz.[1]+1)
+    match fst positions.[0] with
+    | true -> printfn "%i" (snd positions.[0])
+    | false -> printfn "%i" (numbers.Length-(snd positions.[0]))
 
 res 

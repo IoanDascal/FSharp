@@ -1,26 +1,30 @@
+(*
+    Given the set A={3,5,7}, generate all numbers with k digits 
+    using only the elements af set A.
+*)
 open System
-printf "Dati numar elemente multime n="
+printf "Number of elements of set A n="
 let n=Console.ReadLine() |> int
-printf "Dati numarul de cifre ale numarului format k="
+printf "Number of digits for generated numbers k="
 let k= Console.ReadLine() |> int
-let sol=Array.zeroCreate<int> 10
-let valid p=
+let solution=Array.zeroCreate<int> 10
+let validateSolution p=
     true
-let solutie p=
+let isCompleteSolution p=
     p=k
-let afisare p=
+let printSolution p=
     for i in 1..p do
-        if sol.[i]=1 then printf "3"
-        if sol.[i]=2 then printf "5"
-        if sol.[i]=3 then printf "7"
+        if solution.[i]=1 then printf "3"
+        if solution.[i]=2 then printf "5"
+        if solution.[i]=3 then printf "7"
     printfn ""
 
 let rec backtracking p=
     for i in 1..n do
-        sol.[p] <- i 
-        if valid p then
-            if solutie p then
-                afisare p
+        solution.[p] <- i 
+        if validateSolution p then
+            if isCompleteSolution p then
+                printSolution p
             else
                 backtracking (p+1)
 

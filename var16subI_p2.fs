@@ -1,18 +1,29 @@
+(*
+ read n ( natural munber not null)
+┌ for i <- 1,n-1 do
+│┌ if i%2=0 then
+││    write ’#’
+│└■
+│┌ for j <- i+1,n do
+││    write ’*’
+│└■
+└■
+*)
 open System
 printf "Dati n="
 let n=Console.ReadLine() |> int
-let rec scrie (j:int) n =
+let rec innerForLoop (j:int) n =
     if j<=n then
         printf "*"
-        scrie (j+1) n
+        innerForLoop (j+1) n
     else ()       
    
-let rec calcul i n=
+let rec forLoop i n=
     if i<n then
         if i%2=0 then 
             printf "#" 
-        scrie (i+1) n 
-        calcul (i+1) n
+        innerForLoop (i+1) n 
+        forLoop (i+1) n
     else ()
     
-let res=calcul 1 n
+let res=forLoop 1 n

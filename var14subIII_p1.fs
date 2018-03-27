@@ -1,29 +1,35 @@
+(*
+    Generate all permutations of word "info" using backtracking.
+    The first three solutions are : fino, fion, fnio.
+    n - number of letters of one word,
+    k - number of letters from one solution.
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dati k="
-let k=int(System.Console.ReadLine())
-let sol=Array.create<int> 10 0
-let valid p=
-    not (Array.exists (fun x -> x=sol.[p]) sol.[1..p-1])
-let solutie p=
+printf " n="
+let n=int(Console.ReadLine())
+printf " k="
+let k=int(Console.ReadLine())
+let solution=Array.create<int> 10 0
+let validateSolution p=
+    not (Array.exists (fun x -> x=solution.[p]) solution.[1..p-1])
+let isCompleteSolution p=
     p=k
-let afisare p=
+let printSolution p=
     for i in 1..p do
-        match sol.[i] with
+        match solution.[i] with
         | 1 -> printf "%c" 'f'
         | 2 -> printf "%c" 'i'
         | 3 -> printf "%c" 'n'
         | 4 -> printf "%c" 'o'
-        | _ -> printf "Eroare"
+        | _ -> printf "Error"
     printfn ""
 
 let rec backtracking p=
     for i in 1..n do
-        sol.[p]<-i
-        if valid p then
-            if solutie p then
-                afisare p
+        solution.[p]<-i
+        if validateSolution p then
+            if isCompleteSolution p then
+                printSolution p
                 else
                     backtracking (p+1)
 

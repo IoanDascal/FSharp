@@ -1,27 +1,31 @@
+(*
+     Given an array of numbers v :
+     a. Write a function to calculate the numbers of items that are lower than a value x. 
+     b. Using the function above print "YES" if items from v are distinct, or print "NO"
+     if items are not distinct.
+*)
 open System
-printf "Dati numarul de elemente din lista n="
-let n=int32(System.Console.ReadLine())
-printfn "n=%i" n
+printf "Enter the number of elements from array n="
+let n=int32(Console.ReadLine())
 let v=[| for i in 1..n do 
             printf "v[%i]=" i 
-            yield int32(System.Console.ReadLine())|]
+            yield int32(Console.ReadLine())|]
 printfn "%A" v
-printf "Dati un numar a="
-let mutable a= 0
+let mutable a=0
+//    a.
 let countLower acc el=
     match el<a with
     | true -> acc+1
     | false -> acc
-
-let frecvente=Array.create v.Length 0
-printfn "frecv=%A" frecvente
-for i in 0..frecvente.Length-1 do
+//   b.
+let frequencies=Array.create v.Length 0
+for i in 0..frequencies.Length-1 do
     a <- v.[i]
     let res=Array.fold countLower 0 v
-    Array.set frecvente i res
-printfn "%A" frecvente
+    Array.set frequencies i res
+printfn "%A" frequencies
 
-let suma=((frecvente.Length-1)*(frecvente.Length))/2
-printfn "suma=%d" suma
-let mesaj=if  Array.sum frecvente = suma then "DA" else "NU"
+let sum=((frequencies.Length-1)*(frequencies.Length))/2
+printfn "sum=%d" sum
+let mesaj=if  Array.sum frequencies = sum then "YES" else "NO"
 printfn "%s" mesaj

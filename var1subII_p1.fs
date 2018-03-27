@@ -1,18 +1,17 @@
 (*
-    Se  considera o  coada in care initial  au  fost  introduse,  in  aceasta
-  ordine,  elementele  cu  valorile 1 si  2. Se noteaza cu AD(x) operatia 
-  prin care se adauga elementul cu valoarea x in  coada si  cu  EL operatia  
-  prin  care  se  elimina un  element  din  coada.  Cate elemente va contine     
-  coada in urma executarii secventei de operatii: AD(4);EL;EL;AD(5);EL;AD(3) ?
+    A queue contains items 1 and 2.  AD(x) is the operation to add the 
+  element with value x in  queue and  EL is the operation to eliminate an
+  element from the queue.  What will be the elements in the queue after 
+  executing the next sequence of operations  : AD(4);EL;EL;AD(5);EL;AD(3) ?
  *)
 open System.Collections.Generic
-let coada=new Queue<int>()
-coada.Enqueue(1)
-coada.Enqueue(2)
-coada.Enqueue(4)
-coada.Dequeue() |> ignore
-coada.Dequeue() |> ignore
-coada.Enqueue(5)
-coada.Dequeue() |> ignore
-coada.Enqueue(3)
-printfn "%A" coada
+let queue=new Queue<int>()
+queue.Enqueue(1)
+queue.Enqueue(2)
+queue.Enqueue(4)
+queue.Dequeue() |> ignore
+queue.Dequeue() |> ignore
+queue.Enqueue(5)
+queue.Dequeue() |> ignore
+queue.Enqueue(3)
+printfn "%A" queue
