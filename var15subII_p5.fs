@@ -1,5 +1,5 @@
 (*
-    Given a number with n digits, generate a matrix with n+1 rows 
+    Given a number nr with n digits, generate a matrix with n+1 rows 
     and n+1 columns so that:
     - all leading diagonal elements are zero,
     - all elements that are on row one, above the leading diagonal and 
@@ -17,18 +17,16 @@
     - and so on..
 *)
 open System
-printf "n="
-let n=Console.ReadLine()
-let vector=n.ToCharArray()
-printfn "%A" vector
-let nrOfDigits=vector.Length
+printf "nr="
+let nr=Console.ReadLine()
+let nrOfDigits=nr.Length
 let matrix=[|for i in 0..nrOfDigits do
                   yield ([|for j in 0..nrOfDigits do
                                match i=j with
                                | true -> yield 0
                                | false -> match i<j with
-                                          | true ->  yield (int(n.[nrOfDigits-i-1])-48)
-                                          | false -> yield (int(n.[nrOfDigits-j-1])-48)
+                                          | true ->  yield (int(nr.[nrOfDigits-i-1])-48)
+                                          | false -> yield (int(nr.[nrOfDigits-j-1])-48)
                           |])
              |]
 
