@@ -1,14 +1,18 @@
+(*
+     The parents array of a tree with n=7 vertices is :
+    fathers=(5,1,5,1,0,7,5).  How many vertices are brothers  with vertex 1.
+*)
 open System
-printf "Dati numarul de noduri n="
-let n=int(System.Console.ReadLine())
-let tati=[for i in 1..n do
-              yield(printf "tata[%i]=" i
-                    int(System.Console.ReadLine()))]
-printfn "%A" tati
-let tataNod1=tati.[0]
-let nrFrati nod=List.fold (fun acc x -> match x=nod with
-                                        | true -> (acc+1) 
-                                        | false -> acc ) 0 tati
+printf " n="
+let n=int(Console.ReadLine())
+let fathers=[for i in 1..n do
+              yield(printf "fathers[%i]=" i
+                    int(Console.ReadLine()))]
+printfn "%A" fathers
+let fatherOfVertex1=fathers.[0]
+let nrOfBrothers vertex=List.fold (fun acc x -> match x=vertex with
+                                                | true -> (acc+1) 
+                                                | false -> acc ) 0 fathers
 
-let frati=(nrFrati tataNod1)-1
-printfn "%i" frati
+let brothers=(nrOfBrothers fatherOfVertex1)-1
+printfn "%i" brothers

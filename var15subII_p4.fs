@@ -1,29 +1,35 @@
+(*
+    Given an undirected graph with 8 vertices and edges:
+    [1,2],[1,6], [1,7], [2,3], [2,6], [3,6], [3,4], [4,5], [4,8], [5,6], [7,8].  
+    Which is the minimum degree of a vertex from the graph? 
+    Which are the nodes with the munimum degree?
+*)
 open System
-printf "Dati numarul de noduri din graf n="
-let n=int(System.Console.ReadLine())
-let matrice=Array2D.zeroCreate<int> (n+1) (n+1)
-printf "Dati numarul de muchii m="
-let m=int(System.Console.ReadLine())
+printf "Enter the number of nodes n="
+let n=int(Console.ReadLine())
+let adjacencyMatrix=Array2D.zeroCreate<int> (n+1) (n+1)
+printf "Enter the number of edges m="
+let m=int(Console.ReadLine())
 for i in 1..m do
-    printf "Dati x="
-    let x=int(System.Console.ReadLine())
-    printf "Dati y="
-    let y=int(System.Console.ReadLine())
-    matrice.[x,y] <- 1
-    matrice.[y,x] <- 1
+    printf " x="
+    let x=int(Console.ReadLine())
+    printf " y="
+    let y=int(Console.ReadLine())
+    adjacencyMatrix.[x,y] <- 1
+    adjacencyMatrix.[y,x] <- 1
 
-printfn "Matricea de adiacenta este :"
+printfn "The adjacency-matrix representation is:"
 for i in 1..n do
     for j in 1..n do
-        printf "%i " matrice.[i,j]
+        printf "%i " adjacencyMatrix.[i,j]
     printfn ""
 
-let grade=[for i in 1..n do
-               yield (Array.sum matrice.[i,*])] 
-printfn "grade = %A" grade
-let gradMin=List.min grade
-printfn "Gradul minim d=%i" gradMin
+let degrees=[for i in 1..n do
+               yield (Array.sum adjacencyMatrix.[i,*])] 
+printfn "The degree for each node  = %A" degrees
+let minimumDegree=List.min degrees
+printfn "The minimum degree is =%i" minimumDegree
 
-printfn "Varfurile care au gradul minim sunt :"
-List.iteri (fun i x -> if x=gradMin then printf "%i " (i+1) else ()) grade
+printfn "The vertices with the minimum degree are :"
+degrees |> List.iteri (fun i x -> if x=minimumDegree then printf "%i " (i+1) else ())
 
