@@ -1,16 +1,28 @@
+(*
+ read x ( natural number, n>0)
+┌ while x>0 do
+│  read y (natural number)
+│┌ if x>y then
+││     write x%10
+││ else
+││     write y%10
+│└■
+│  x <- y
+└■
+*)
 open System
-printf "Dati un numar intreg x="
-let x=int32(System.Console.ReadLine())
+printf "Enter an integer number x="
+let x=int32(Console.ReadLine())
 
-let rec compara x=
+let rec whileLoop x=
     match x with
-    | 0 -> None
-    | _ -> printf "Dati un numar intreg y="
-           let y=int32(System.Console.ReadLine())
+    | 0 -> ()
+    | _ -> printf "Enter an integer number y="
+           let y=int32(Console.ReadLine())
            match x>y with
            | true -> printfn "%i" (x%10)
            | false -> printfn "%i" (y%10)
            let x=y
-           compara x
+           whileLoop x
 
-let res:obj option=compara x
+let res=whileLoop x
