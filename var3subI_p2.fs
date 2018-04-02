@@ -1,17 +1,28 @@
+(*
+ read z,x  ( natural numbers z,x>0)
+┌ while x>0 do
+│   read y (natural number)
+│ ┌ if z<y-x then
+│ │    write x%10
+│ │ else
+│ │    write y%10
+│ └■
+│   x <- y
+└■
+*)
 open System
-printf "Dati un numar intreg z="
-let z=int32(System.Console.ReadLine())
-printf "Dati un numar x="
-let x=int32(System.Console.ReadLine())
-let rec compara x=
+printf "Enter z="
+let z=int32(Console.ReadLine())
+printf "Enter x="
+let x=int32(Console.ReadLine())
+let rec whileLoop x=
     match x with
-    | 0 -> None
-    | _ -> printf "Dati un numar y="
-           let y=int32(System.Console.ReadLine())
+    | 0 -> ()
+    | _ -> printf "Enter y="
+           let y=int32(Console.ReadLine())
            match z<y-x with
            | true -> printfn "%i" (x%10)
            | false -> printfn "%i" (y%10)
-           let x=y
-           compara x
+           whileLoop y
 
-let res:obj option=compara x
+let res=whileLoop x
