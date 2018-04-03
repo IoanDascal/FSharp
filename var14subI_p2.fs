@@ -27,7 +27,7 @@ let rec whileLoop x n=
     match x with
     | 0 -> n
     | _ -> let c=innerWhileLoop x 0
-           printf "Dati x="
+           printf " x="
            let x=int(Console.ReadLine())
            whileLoop x (n*10+ c)
 
