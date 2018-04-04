@@ -1,10 +1,17 @@
-printf "Dati n="
-let n=int(System.Console.ReadLine())
+(*
+ read n ( natural number)
+ c <- 0
+┌ for i <- 1,n do
+│    c <- (c+1)%10
+│    write c
+*)
+printf " n="
+let n=uint32(System.Console.ReadLine())
 let res=
-    let rec executa n c=
+    let rec forLoop n c=
         match n with
-        | 1 -> printf "%i" ((c+1)%10)
+        | 0u -> ()
         | _ -> printf "%i" ((c+1)%10)
-               executa (n-1) ((c+1)%10)
-    executa n 0
+               forLoop (n-1u) ((c+1)%10)
+    forLoop n 0
 printfn ""
