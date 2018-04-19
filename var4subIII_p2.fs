@@ -1,3 +1,19 @@
+(*
+    Implement in F# next C++ function:
+ void f (int n, int x)
+ {
+      if(x>n)
+      cout<<0; 
+  else
+      if(x%4<=1)
+          f(n,x+1);
+      else
+      {
+           f(n,x+3);
+           cout<<1;
+      }
+ }
+*)
 let rec f n x=
     match x>n with
     | true -> printf "0"

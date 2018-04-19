@@ -1,3 +1,14 @@
+(*
+    Implement in F# next C++ function:
+ int f(int a, int b)
+ {
+     if (b<1) 
+        return -1;
+     else if (a%b==0)
+        return 1+f(a/b,b);
+     else
+        return 0; }
+*)
 let rec f a b=
     match b<1 with
     | true -> -1
