@@ -1,3 +1,16 @@
+(*
+    Implement in f# next C++ function:
+ int f(int n)
+ { 
+     if (n<=0) 
+         return -1;
+     if (n%2==0) 
+         return 0;
+     if (n%3==0) 
+         return 0;
+     return 1+f(n-10);
+} 
+*)
 let rec f n=
     match n<=0 with
     | true -> -1
