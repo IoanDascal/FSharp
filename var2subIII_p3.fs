@@ -15,8 +15,8 @@ let readFile=
     res
 
 let inputArray=readFile
-let numbers=inputArray.[..inputArray.Length-1] |> Array.map System.Int32.Parse
-                                              |> Array.filter (fun x -> x>0)
+let numbers=inputArray |> Array.map System.Int32.Parse
+                       |> Array.filter (fun x -> x>0)
 
 let nr=Array.length numbers
 printfn "%A" nr
