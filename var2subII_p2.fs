@@ -1,21 +1,32 @@
+(*
+    Given the sides a,b,c of a triangle calculate the:
+ - perimeter P of the triangle,
+ - area A using Heron's formula,
+ - circumradius R,
+ - inradius r.
+*)
 open System
-type Triunghi=
+type Triangle=
     {
-        a:float;
-        b:float;
-        c:float;
-        P:float
+        a:float32;
+        b:float32;
+        c:float32
     }
-let citeste msg:string=
-    printf "Dati  %s"  msg
-    let a=System.Console.ReadLine()
-    a 
-
-let a=float(citeste "a=")
-let b=float(citeste "b=")
-let c=float(citeste "c=")
-let triunghi1={a=a;b=b;c=c;P=a+b+c}
-printfn "a=%f" triunghi1.a
-printfn "b=%f" triunghi1.b
-printfn "c=%f" triunghi1.c 
-printfn "P=%f" triunghi1.P
+printf "Enter side x="
+let x=float32(Console.ReadLine())
+printf "Enter side y="
+let y=float32(Console.ReadLine())
+printf "Enter side z="
+let z=float32(Console.ReadLine())
+let tr={a=x;b=y;c=z}
+let P=tr.a+tr.b+tr.c;
+let A=sqrt(P/2.0f*(P/2.0f-tr.a)*(P/2.0f-tr.b)*(P/2.0f-tr.c))
+let R=sqrt(tr.a*tr.a*tr.b*tr.b*tr.c*tr.c/(P*(tr.b+tr.c-tr.a)*(tr.a+tr.c-tr.b)*(tr.a+tr.b-tr.c)))
+let r=sqrt((tr.b+tr.c-tr.a)*(tr.a+tr.c-tr.b)*(tr.a+tr.b-tr.c)/(4.0f*P))
+printfn "a=%f" tr.a
+printfn "b=%f" tr.b
+printfn "c=%f" tr.c 
+printfn "P=%f" P
+printfn "A=%f" A
+printfn "R=%f" R
+printfn "r=%f" r
