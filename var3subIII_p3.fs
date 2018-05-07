@@ -1,22 +1,25 @@
+(*
+    File nrVar33.txt contains integer numbers. Write a function that prints 
+only numbers with minimum three digits in increasing order. 
+*)
 open System.IO
-open System.Net
 
-let citire=
-    use input=File.OpenText("num.txt")
-    let sir=input.ReadToEnd()
-    let sir=sir.Replace(System.Environment.NewLine," ")
-    let res=sir.Split([|' '|])
-    res
+let readFile=
+    use input=File.OpenText("FSharp/nrVar33.txt")
+    let inputString=input.ReadToEnd()
+    let inputString=inputString.Replace(System.Environment.NewLine," ")
+    let inputArray=inputString.Split([|' '|])
+    inputArray
  
-let sir =citire
-printfn "%A" sir
-let numere=sir.[..sir.Length-1] |> Array.map (fun x -> float(x))
-                                |> Array.filter (fun x -> x>100000.0)
+let stringArray =readFile
+printfn "%A" stringArray
+let numbers=stringArray.[..stringArray.Length-1] |> Array.map (fun x -> int32(x))
+                                |> Array.filter (fun x -> x>=100 || x<= -100)
 
-let nr=Array.length numere
-if nr=0 then printfn "Nu exista"
+let nr=Array.length numbers
+if nr=0 then printfn "There are no numbers with minimum 3 digits"
     else
-        let res=Array.sort numere
+        let res=Array.sort numbers
         printfn "%A" res
-        let suma=Array.sum res
-        printfn "sum=%f" (suma-float(res.Length)*100000.0)
+        let sum=Array.sum res
+        printfn "sum=%d" sum
