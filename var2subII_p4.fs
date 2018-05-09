@@ -1,7 +1,7 @@
 (*
     Given a matrix with n rows and n columns,
 write a function that returns the last digit of the 
-sum of elements from a row r.
+sum of positive elements from a row r.
 *)
 
 open System
@@ -16,5 +16,5 @@ for row in matrix do
     printfn "%A" row
 printf "Enter the row r="
 let r=int32(Console.ReadLine())
-let sum=matrix.[r-1] |> Array.sum
+let sum=matrix.[r-1] |> Array.filter (fun x -> x>0) |> Array.sum
 printfn "The last digit =%i" (sum%10)
