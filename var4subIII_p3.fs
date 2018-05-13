@@ -1,18 +1,23 @@
+(*
+    File nrVar4.txt contains integer numbers. Write a 
+function that prints in descending order all the numbers
+with maximum 2 digits, separated by a space.
+*)
+
 open System.IO
-open System.Net
+let readFile=
+    use input=File.OpenText("nrVar4.txt")
+    let inputString=input.ReadToEnd()
+    let inputString=inputString.Replace(System.Environment.NewLine," ")
+    let inputArray=inputString.Split([|' '|])
+    inputArray
 
-let citire=
-    use input=File.OpenText("nrvar4.txt")
-    let sir=input.ReadToEnd()
-    let sir=sir.Replace(System.Environment.NewLine," ")
-    let res=sir.Split([|' '|])
-    res
+let stringArray=readFile
+let numbers=stringArray.[..stringArray.Length-1] 
+            |> Array.map (fun x -> int32(x)) 
+            |> Array.filter (fun x -> x<100)
 
-let sir=citire
-let numere=sir.[..sir.Length-1] |> Array.map (fun x -> int32(x)) 
-                                |> Array.filter (fun x -> x<100)
-
-if numere.Length=0 then printfn "Nu exista"
+if numbers.Length=0 then printfn "There are no numbers less than 100"
     else
-        let res= Array.sortDescending numere
+        let res= Array.sortDescending numbers
         printfn "%A" res
