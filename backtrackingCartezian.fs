@@ -3,14 +3,13 @@
     Each set contains n elements.
 *)
 open System
-printf "n="
+printf "Enter number of elements from a set n="
 let n=int32(Console.ReadLine())
-printf "k="
+printf "Enter number of sets k="
 let k=int32(Console.ReadLine())
 let v=Array.create 10 0
 let validatePartialSolution p=
     true
-
 let completeSolution p=
     p=k
 
