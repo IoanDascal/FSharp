@@ -1,28 +1,33 @@
+(*
+    Write a function that generates all numbers with k digits.
+Each number must have different digits, and consecutive digits 
+must have different parity.
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dati k="
-let k=int(System.Console.ReadLine())
-let sol=Array.create<int> 10 0
-let solutie p=
+printf "Enter number of digits n="
+let n=int(Console.ReadLine())
+printf "Enter number of digits from generated numbers k="
+let k=int(Console.ReadLine())
+let solution=Array.zeroCreate<int> 10
+let completeSolution p=
     p=k-1
-let afisare p=
+let printSolution p = 
     for i in 0..p do
-        printf "%i" sol.[i]
+       printf "%i" solution.[i]
     printfn ""
 
-let valid p=
+let validatePartialSolution p=
     match p with
-    | 0 -> sol.[0]<>0 
-    | _ -> (sol.[p-1]%2 <> sol.[p]%2) && not (Array.contains sol.[p] sol.[..p-1])
+    | 0 -> solution.[0]<>0 
+    | _ -> (solution.[p-1]%2 <> solution.[p]%2) && not (Array.contains solution.[p] solution.[..p-1])
 
-let rec backtracking p=
+let rec backtracking p =
     for i in 0..n-1 do
-        sol.[p] <- i
-        if (valid p) then
-            if (solutie p) then
-                (afisare p)
-                else
-                    backtracking (p+1)
+        solution.[p] <- i
+        if (validatePartialSolution p) then
+            if (completeSolution p) then
+                printSolution p 
+            else
+                backtracking (p+1)  
 
-let res=backtracking 0
+let res=backtracking 0  

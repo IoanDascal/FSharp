@@ -1,17 +1,27 @@
+(*
+    Write a function that prints the sum of all n elements of an array of
+integer numbers, then the sum of n-1 elements, and so on.
+Example : for n=5 and array=[|3;7;9;11;20|] it must print:
+   50
+   30
+   19
+   10
+   3
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-let sir=[|for i in 1..n do
-              printf "Dati vec[%i]=" i
-              yield int(System.Console.ReadLine())|]
+printf "Enter number of elements from array n="
+let n=int(Console.ReadLine())
+let intArray=[|for i in 1..n do
+                   printf "Enter vec[%i]=" i
+                   yield int(Console.ReadLine())|]
 
-printfn "%A" sir
-let suma=Array.sum sir
-let lungime=sir.Length
-let rec afiseaza sumaSir lung=
-    match lung with
-    | 1 -> printfn "%i" sir.[0]
-    | _ -> printfn "%i" sumaSir
-           afiseaza (sumaSir-sir.[lung-1]) (lung-1)
+printfn "%A" intArray
+let sumOfArray=Array.sum intArray
+let lengthOfArray=intArray.Length
+let rec print sumOfArray lengthOfArray=
+    match lengthOfArray with
+    | 1 -> printfn "%i" intArray.[0]
+    | _ -> printfn "%i" sumOfArray
+           print (sumOfArray-intArray.[lengthOfArray-1]) (lengthOfArray-1)
 
-let afis=afiseaza suma lungime
+let pr=print sumOfArray lengthOfArray

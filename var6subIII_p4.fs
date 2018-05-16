@@ -1,35 +1,38 @@
+(*
+    File nrVar64.txt contains an array of numbers in increasing order.
+Write a function that print distinct numbers with their frequencies.
+*)
 open System.IO
-open System.Net
-let citire=
+let readFile=
     use input=File.OpenText("nrVar64.txt")
-    let sir=input.ReadToEnd()
-    let sir=sir.Replace(System.Environment.NewLine," ")
-    let res=sir.Split([|' '|])
-    res 
-let vector=citire
-printfn "%A" vector
-let numere= Array.map (fun x -> int(x)) vector
-printfn "numere : %A" numere
-//       Varianta 1
-let mutable frecv=1
-let diferite=List.append [for i in 0..numere.Length-2 do
-                              if numere.[i]<> numere.[i+1] then yield (numere.[i],frecv);frecv <- 1
-                                  else frecv <- frecv+1  ] [(numere.[numere.Length-1],frecv)]
-printfn "diferite : %A" diferite
+    let inputString=input.ReadToEnd()
+    let inputString=inputString.Replace(System.Environment.NewLine," ")
+    let inputArray=inputString.Split([|' '|])
+    inputArray 
+let stringArray=readFile
+printfn "%A" stringArray
+let numbers= Array.map (fun x -> int(x)) stringArray
+printfn "Input array : %A" numbers
+//       Version 1
+let mutable frequency=1
+let differentNumbers=List.append [for i in 0..numbers.Length-2 do
+                                      if numbers.[i]<> numbers.[i+1] then yield (numbers.[i],frequency);frequency <- 1
+                                       else frequency <- frequency+1  ] [(numbers.[numbers.Length-1],frequency)]
+printfn "Different numbers : %A" differentNumbers
  
- //   Varianta 2
-let dist=
-    Seq.ofArray numere
+ //   Version 2
+let distinctNumbers=
+    Seq.ofArray numbers
     |> Seq.distinct
     |> Seq.toArray
      
-printfn "distincte : %A" dist
+printfn "Distinct Numbers : %A" distinctNumbers
 let count value aray=
     Seq.where (fun x -> x=value) aray
     |> Seq.length
 
-let frecvente=[|for i in 0..dist.Length-1 do
-                    yield count dist.[i] numere|]
-printfn "frecvente : %A" frecvente
-let rezultat=[|for i in 0..dist.Length-1 do yield (dist.[i],frecvente.[i])|]
-printfn "rezultat : %A" rezultat
+let frequencies=[|for i in 0..distinctNumbers.Length-1 do
+                    yield count distinctNumbers.[i] numbers|]
+printfn "Frequencies : %A" frequencies
+let result=[|for i in 0..distinctNumbers.Length-1 do yield (distinctNumbers.[i],frequencies.[i])|]
+printfn "Different numbers : %A" result
