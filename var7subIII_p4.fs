@@ -1,22 +1,32 @@
+(*
+    Given a sequence with the rule:  f(n)= |  n , if n<=5
+                                           | 2*f(n-1), if n>5
+ - Write a function sub:int -> int -> int that takes a number nr 
+and return the biggest number, lower than nr, that is a term of 
+the sequence f. 
+ - Write a function sequence:int list -> int -> int list that takes
+a number s and return a list with terms from the sequence f. The sum 
+of the elements from the list must be equal to s.
+*)
 open System
-printf "Dati s="
-let s=int(System.Console.ReadLine())
-let rec sub termen n=       // Varianta recursiva
-    match termen>n with
-    | true -> match n<5 with
-              | true -> termen-1
-              | false -> termen/2
-    | false -> match termen >=5 with 
-               | true -> sub (2*termen) n
-               | false -> sub (termen+1) n 
+printf "Enter s="
+let s=int(Console.ReadLine())
+let rec sub number nr=   
+    match number>nr with
+    | true -> match nr<5 with
+              | true -> number-1
+              | false -> number/2
+    | false -> match number >=5 with 
+               | true -> sub (2*number) nr
+               | false -> sub (number+1) nr 
 
 let res=sub 0 s
-printfn "rez=%i" res
-let rec serie n=
+printfn "The biggest number, lower than %i, that is term of the sequence is=%i" s res
+let rec sequence xs n=
     match n with
-    | 0 -> printfn ""
+    | 0 -> xs
     | _ -> let res=sub 0 n
-           printf "%i " res
-           serie (n-res)
+           sequence (res::xs) (n-res)
 
-let afis=serie s
+let sList=sequence [] s
+printfn "The list of numbers is : %A and the sum =%i" sList (List.sum sList)
