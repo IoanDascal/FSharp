@@ -1,19 +1,25 @@
+(*
+    File nrVar84.txt contains on the first line values for n and m, 
+on the second line an array of n natural even numbers in increasing
+order and on the third line an array of m odd natural numbers in increasing order.
+Write a function that merge the two arrays. Consecutive numbers must be 
+of different parities.
+*)
 open System.IO
-open System.Net
 let input=File.OpenText("nrVar84.txt")
-let citire (input:StreamReader)=
-    let sir=input.ReadLine()
-    let sir=sir.Replace(System.Environment.NewLine," ")
-    let res=sir.Split([|' '|])
-    res 
+let readLine (input:StreamReader)=
+    let inputString=input.ReadLine()
+    let inputString=inputString.Replace(System.Environment.NewLine," ")
+    let inputArray=inputString.Split([|' '|])
+    inputArray 
 
-let nm=citire input
-let n=int(nm.[0])
+let nm=readLine input
+let n=int32(nm.[0])
 printfn "n=%i" n 
-let m=int(nm.[1])
+let m=int32(nm.[1])
 printfn "m=%i" m 
-let a=List.ofArray (Array.map (fun x -> int(x)) (citire input))
-let b=List.ofArray (Array.map (fun x -> int(x)) (citire input))
+let a=List.ofArray (Array.map (fun x -> int32(x)) (readLine input))
+let b=List.ofArray (Array.map (fun x -> int32(x)) (readLine input))
 printfn "a= %A" a
 
 printfn "b= %A" b
