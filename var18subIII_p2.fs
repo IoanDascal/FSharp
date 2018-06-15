@@ -1,23 +1,29 @@
+(*
+    Write a function to generate all arrays with k digits,
+using digit 0 and digit 1. 
+     - n=2 , because we are using only 0 and 1.
+     - k is the number of digits from an array
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dati k="
-let k=int(System.Console.ReadLine())
-let sol=Array.zeroCreate<int> 10
-let valid p=
+printf "Enter n="
+let n=int(Console.ReadLine())
+printf "Enter k="
+let k=int(Console.ReadLine())
+let solution=Array.zeroCreate<int> 10
+let validatePartialSolution p=
     true
-let solutie p=
+let completeSolution p=
     p=k
-let afisare p=
+let printSolution p=
     for i in 1..p do
-        printf "%i" sol.[i]
+        printf "%i" solution.[i]
     printfn ""
 let rec backtracking p=
     for i in 0..n-1 do
-        sol.[p] <- i
-        if valid p then
-            if solutie p then
-                afisare p
+        solution.[p] <- i
+        if validatePartialSolution p then
+            if completeSolution p then
+                printSolution p
             else
                 backtracking (p+1)
 let res= backtracking 1

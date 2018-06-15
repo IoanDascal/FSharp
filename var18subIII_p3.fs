@@ -1,13 +1,19 @@
+(*
+    - Write a function to calculate the average of elements
+from an array of real numbers. 
+    - Write a function to calculate the number of elements fron 
+an array of real numbers that are greater or equal than the average.
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
+printf "Enter the number of elements n="
+let n=int(Console.ReadLine())
 let vector=[for i in 0..n-1 do yield (printf "v[%i]=" i
-                                      float(System.Console.ReadLine()))]
-let media=List.average vector
-let maiMariCaMedia=List.countBy (fun x -> x>=media) vector
-printfn "%A" maiMariCaMedia
-let res=match fst maiMariCaMedia.[0] with
-        | true -> snd maiMariCaMedia.[0]
-        | false -> snd maiMariCaMedia.[1]
+                                      float(Console.ReadLine()))]
+let average=List.average vector
+let greatherOrEqualThanAverage=List.countBy (fun x -> x>=average) vector
+printfn "%A" greatherOrEqualThanAverage
+let res=match fst greatherOrEqualThanAverage.[0] with
+        | true -> snd greatherOrEqualThanAverage.[0]
+        | false -> snd greatherOrEqualThanAverage.[1]
 
-printfn "Numarul de valori mai mari sau egale cu media este=%i" res
+printfn "The number of elements that are greather or equal than average is =%i" res
