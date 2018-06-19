@@ -1,4 +1,6 @@
-open System
+(*
+    Add and Remove functions for simple linked lists.
+*)
 open System.Collections.Generic
 
 let items=new List<int>(10)
