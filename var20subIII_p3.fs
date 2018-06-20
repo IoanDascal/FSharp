@@ -1,11 +1,14 @@
+(*
+    Given a list of integer numbers, modify the list so that
+ null values would be at the end of the list.
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-let numere=[for i in 0..n-1 do
+printf "Enter n="
+let n=int(Console.ReadLine())
+let numbers=[for i in 0..n-1 do
                 yield (printf "num[%i]=" i
-                       int(System.Console.ReadLine()))]
-let lista=[]
-let nule:int list=
+                       int(Console.ReadLine()))]
+let nullValues:int list=
     let rec loop (num:int list) lst=
         match num with
         | [] -> lst
@@ -13,6 +16,6 @@ let nule:int list=
                      | 0 -> loop xs (List.append lst [x])  
                      | _ -> 
                             loop xs (List.append [x] lst)
-    loop numere lista
-let res=nule
+    loop numbers []
+let res=nullValues
 printfn "%A" res
