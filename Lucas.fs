@@ -1,6 +1,6 @@
 (*
     Definition of Lucas numbers using pattern matching.
-This is a tail recursion function.
+This is a tail recursive function.
 *)
 let rec Lucas x=
     match x with
