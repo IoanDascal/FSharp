@@ -1,24 +1,29 @@
-open System
+(*
+   Define a record to store data for a type Student with fields: name, 
+average grade and birthday date. Write a funtion to initialize fields from
+the Student record, and another function to modify the value of a field.
+*)
 type Data=
     {
-        zi:int;
-        luna:int;
-        an:int
+        day:int;
+        month:int;
+        year:int
     }
-type Elev= 
+type Student= 
     {
-        nume:string;
-        media:float;
-        dataNasterii:Data
+        name:string;
+        average:float;
+        birthday:Data
     }
-let initializare nm med z l a=
+let initialize nm avg d m y=
     {
-        Elev.nume=nm;
-        Elev.media=med;
-        Elev.dataNasterii={zi=z;luna=l;an=a}
+        Student.name=nm;
+        Student.average=avg;
+        Student.birthday={day=d;month=m;year=y}
     }
-let elev=initializare "dorel" 7.30 12 5 2000
-printfn "%A" elev
-let setNume item numeNou={item with nume=numeNou}
-let gal=setNume elev "Galez"
-printfn "%A" gal
+
+let student=initialize "John" 7.30 12 5 2000
+printfn "%A" student
+let setName item newName={item with name=newName}
+let geo=setName student "George"
+printfn "%A" geo
