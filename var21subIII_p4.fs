@@ -3,7 +3,7 @@
 where n is the number of elements from an array of integers and k is 
 the length of a subarray. The second line from file contains an array 
 of n integers. Calculate the starting index of the contiguous subarray 
-with k elements within a one-dimensional array of n numbers whic has 
+with k elements within a one-dimensional array of n numbers which has 
 the largest sum.
 *)
 open System.IO
