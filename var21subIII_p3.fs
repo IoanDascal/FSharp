@@ -1,6 +1,12 @@
+(*
+    Given a natural number n, calculate the difference between
+the biggest prime number lower than n(p1) and the lowest prime number
+bigger than n(p2). 
+   p1 <= n <= p2
+*)
 open System
-printf "Dati n="
-let n =int(System.Console.ReadLine())
+printf "Enter n="
+let n =int(Console.ReadLine())
 
 let isPrime n=
     let rec loop i=
