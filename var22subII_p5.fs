@@ -1,13 +1,22 @@
+(*
+    Generate a matrix with m rows and n columns that contains
+all numbers from 1 to m*n in decreasing order.
+Example: For m=4 n=3
+The matrix is: 12 11 10
+                9  8  7
+                6  5  4
+                3  2  1
+*)
 open System
-printf "Dati m="
-let m=int(System.Console.ReadLine())
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-let matrice=Array2D.zeroCreate<int> m n
+printf "Enter the number of rows m="
+let m=int(Console.ReadLine())
+printf "Enter the number of columns n="
+let n=int(Console.ReadLine())
+let matrix=Array2D.zeroCreate<int> m n
 for i in 0..m-1 do
     for j in 0..n-1 do
-        matrice.[i,j] <- m*n-(i*n+j)
+        matrix.[i,j] <- m*n-(i*n+j)
 for i in 0..m-1 do
     for j in 0..n-1 do 
-        printf "%A " matrice.[i,j]
+        printf "%4i " matrix.[i,j]
     printfn ""
