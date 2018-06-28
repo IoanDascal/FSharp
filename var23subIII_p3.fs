@@ -1,27 +1,30 @@
+(*
+    a) Write a function shift: int list -> int list, which make a
+cyclic permutation of one place to the left for a list of n elements.
+Example: [1;2;3;4] -> [2;3;4;1]
+    b) Write a function to reverse the order of elements from a list
+using the function shift. 
+Example: [1;2;3;4;5] -> [5;4;3;2;1]
+*)
 open System
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-let lista=[]
-let rec citeste lista=
-    printf "Dati un numar <10000 = "
-    let nr=int(System.Console.ReadLine())
-    match nr<10000 with
-    | true -> citeste (List.append lista [nr])
-    | false -> lista
+printf "Enter n="
+let n=int(Console.ReadLine())
 
-let res=citeste lista
-printfn "%A" res
-let permutare nn res= 
-    let first,second=List.splitAt nn res 
-    let final =List.append (List.append first.Tail [first.Head]) second
-    final
+let intList=[for i in 1..n do
+                 printf "Enter a number <10000 = "
+                 yield(int(Console.ReadLine()))
+                 ]
+printfn "%A" intList
+let shift (intList:int list)= 
+    List.append intList.Tail [intList.Head]
 
-printfn "permutare=%A" (permutare n res)
+printfn "Permutation=%A" (shift intList)
 
-let rec inversare n (lst :int List)=
+let rec reverse n (lst :int List)=
     match n with 
-    | 0 -> lst
-    | _ -> inversare (n-1) (permutare n lst)
+    | 1 -> lst
+    | _ -> let first,second=List.splitAt (n) lst 
+           reverse (n-1) (List.append (shift first) second)
 
-let invers=inversare n res
+let invers=reverse n intList
 printfn "%A" invers
