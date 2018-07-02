@@ -1,5 +1,9 @@
+(*
+    Write a programme that print "Correctly" if a string is a
+palindrome, otherwise it should print "Incorrectly".
+*)
 open System
-printf "Dati un sir de caractere:"
-let s=System.Console.ReadLine()
+printf "Enter a string :"
+let s=Console.ReadLine()
 let rev:string=String(s.ToCharArray() |> Array.rev)
-let res=if s=rev then printfn "Corect" else printfn "Incorect"
+let res=if s=rev then printfn "Corecctly" else printfn "Incorrectly"
