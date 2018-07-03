@@ -1,19 +1,24 @@
+(*
+    Write a function f : int list -> int that generate an integer 
+number with all even digits from a list of n digits. If the list 
+doesn't contain even digits function f should return -1.
+*)
 open System
 printf "Dati n="
-let n=int(System.Console.ReadLine())
+let n=int(Console.ReadLine())
 let vector=[for i in 1..n do yield(printf "vec[%i]=" i
-                                   int(System.Console.ReadLine()))] 
+                                   int(Console.ReadLine()))] 
 printfn "Vector: %A" vector
 let f a=
-    let pare=List.filter (fun x -> x%2=0) a
-    printfn "Pare: %A" pare
-    if pare.Length=0 then -1
+    let evenDigits=List.filter (fun x -> x%2=0) a
+    printfn "Pare: %A" evenDigits
+    if evenDigits.Length=0 then -1
         else 
-            let pareR=pare |>List.rev
-            let rec nr pareR num=
-                match pareR with
+            let digitsList=evenDigits |>List.rev
+            let rec newNumber digitsList num=
+                match digitsList with
                 | [] -> num
-                | x::xs -> nr xs (num*10+x)
-            nr pareR 0
+                | x::xs -> newNumber xs (num*10+x)
+            newNumber digitsList 0
 let res=f vector
-printfn "Numarul format =%i" res
+printfn "The new number is =%i" res

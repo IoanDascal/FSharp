@@ -1,13 +1,18 @@
+(*
+    Given a decimal number a with maximum two digits at the whole part and
+maximum seven digits at the fractional part, write a programme to convert 
+number a to an irreducible fraction.
+*)
 open System
-printf "Dati un numar real a="
-let a=float(System.Console.ReadLine())
-let numitor=10000000
-let numarator=int(a*float(numitor))
-let rec cmmmdc a b=
+printf "Enter a real number a="
+let a=float(Console.ReadLine())
+let denominator=10000000
+let numerator=int(a*float(denominator))
+let rec GCD a b=
     match a=0 || b=0 with
     | true -> a+b
     | false -> match a>b with
-               | true -> cmmmdc (a%b) b
-               | false -> cmmmdc a (b%a)
-let dc=cmmmdc numarator numitor 
-printfn "Fractia ireductibila este: %i/%i" (numarator/dc) (numitor/dc)
+               | true -> GCD (a%b) b
+               | false -> GCD a (b%a)
+let greatestCommonFactor=GCD numerator denominator 
+printfn "The irreducible fraction is: %i/%i" (numerator/greatestCommonFactor) (denominator/greatestCommonFactor)
