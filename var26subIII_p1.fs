@@ -1,13 +1,17 @@
-printf "Dati numarul de elemente ale mutimii n="
-let n=int(System.Console.ReadLine())
-printf "Dati numarul de elemente care compun solutia k="
-let k=int(System.Console.ReadLine())
+(*
+    Generate all numbers with k digits from set {0,2,9}
+*)
+open System
+printf "Enter the number of elements from set n="
+let n=int(Console.ReadLine())
+printf "Enter the number of elements from solution k="
+let k=int(Console.ReadLine())
 let sol=Array.zeroCreate<int> 10
-let validare p=
+let validatePartialSolution p=
     not (p=1 && sol.[1]=1 )
-let solutie p=
+let isCompleteSolution p=
     p=k
-let afisare p=
+let printSolution p=
     for i in 1..p do
         if sol.[i]=1 then printf "0"
             else if sol.[i]=2 then printf "2"
@@ -16,9 +20,9 @@ let afisare p=
 let rec backtracking p=
     for i in 1..n do
         sol.[p] <- i
-        if validare p then
-            if solutie p then
-                afisare p
+        if validatePartialSolution p then
+            if isCompleteSolution p then
+                printSolution p
                 else
                     backtracking (p+1)
 

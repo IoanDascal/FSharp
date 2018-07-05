@@ -1,7 +1,11 @@
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dari k="
-let k=int(System.Console.ReadLine())
-let lista=[for i in k.. -1 ..1 do yield(n*i)]
-printfn "%A" lista
+(*
+    Write a function to generate the lowest k multiples of n.
+*)
+open System
+printf "Enter n="
+let n=int(Console.ReadLine())
+printf "Enter k="
+let k=int(Console.ReadLine())
+let list=[for i in k.. -1 ..1 do yield(n*i)]
+printfn "%A" list
 printfn ""
