@@ -1,5 +1,14 @@
 (*
-
+    A singly linked list stores in field nr of each node an integer number.
+If the list stores numbers 1,2,3,4,5, what should be the content of the list 
+after the execution of the next C++ program sequence:
+     p=prim;
+     while(p->urm!=NULL)
+     {
+         p->urm->nr=p->nr*p->urm->nr;
+         p=p->urm;
+     }
+     
 *)
 
 (*
