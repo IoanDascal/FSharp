@@ -28,6 +28,7 @@ let addFirst newValue=function
 let insertValuesAtFrontOfLinkedList (values:int array)=
     let linkedList:LinkedList<Node>=values |> Array.fold (fun newList value -> addFirst (Some value) newList) Empty
     linkedList
+
 let rec showList (l:LinkedList<Node>)=
     match l with
     | Empty -> printfn "  - End of list"
