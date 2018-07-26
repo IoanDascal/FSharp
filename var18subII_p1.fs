@@ -3,7 +3,7 @@
 If the list stores numbers 7,32,15,2,8,1,7, print the elements of the list three
 times.
 *)
-
+[<ReferenceEquality>]
 type Node=
     {
         Info:int;
@@ -41,7 +41,7 @@ let rec printList1 prim=
     printNode prim
     let prim = nextNode prim
     match prim=circularlyList with
-    | true -> printfn "End"
+    | true -> printfn "    End"
     | false -> printList1 prim  
 printList1 circularlyList
 
