@@ -1,34 +1,39 @@
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dati k="
-let k=int(System.Console.ReadLine())
-let sol=Array.zeroCreate<int> 10
-let mutable nrSolutii=0
-let valid p=
+(*
+    Genrate all permutations of the set {'I','N','F','O'}. In how many
+permutations there are two vowels in consecutive positions.
+*)
+open System
+printf "Enter n="
+let n=int(Console.ReadLine())
+printf "Enter k="
+let k=int(Console.ReadLine())
+let solution=Array.zeroCreate<int> 10
+let mutable nrOfConsecutiveVowels=0
+let validateSolution p=
     if p=1 then true
         else
-            let distinct=Array.distinct sol.[1..p]
+            let distinct=Array.distinct solution.[1..p]
             distinct.Length=p
-let afisare p=
+let printSolution p=
     for i in 1..p do
-        if sol.[i]=1 && sol.[i-1]=4 || sol.[i]=4 && sol.[i-1]=1 then
-            nrSolutii <- nrSolutii+1
+        if solution.[i]=1 && solution.[i-1]=4 || solution.[i]=4 && solution.[i-1]=1 then
+            nrOfConsecutiveVowels <- nrOfConsecutiveVowels+1
             for j in 1..p do
-                if sol.[j]=1 then printf "I"
-                if sol.[j]=2 then printf "N"
-                if sol.[j]=3 then printf "F"
-                if sol.[j]=4 then printf "O"
+                if solution.[j]=1 then printf "I"
+                if solution.[j]=2 then printf "N"
+                if solution.[j]=3 then printf "F"
+                if solution.[j]=4 then printf "O"
             printfn ""
-let solutie p=
+let completeSolution p=
     p=k
 let rec backtracking p=
     for i in 1..n do
-        sol.[p] <- i
-        if valid p then
-            if solutie p then
-                afisare p
+        solution.[p] <- i
+        if validateSolution p then
+            if completeSolution p then
+                printSolution p
                 else 
                     backtracking (p+1)
 
 let res=backtracking 1
-printfn "Nr sol=%i" nrSolutii
+printfn "The number of permutations with two consecutive vowels is=%i" nrOfConsecutiveVowels
