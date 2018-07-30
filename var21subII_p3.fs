@@ -5,25 +5,25 @@ the Student record, and another function to modify the value of a field.
 *)
 type Data=
     {
-        day:int;
-        month:int;
-        year:int
+        Day:int;
+        Month:int;
+        Year:int
     }
 type Student= 
     {
-        name:string;
-        average:float;
-        birthday:Data
+        Name:string;
+        Average:float;
+        Birthday:Data
     }
 let initialize nm avg d m y=
     {
-        Student.name=nm;
-        Student.average=avg;
-        Student.birthday={day=d;month=m;year=y}
+        Student.Name=nm;
+        Student.Average=avg;
+        Student.Birthday={day=d;month=m;year=y}
     }
 
 let student=initialize "John" 7.30 12 5 2000
 printfn "%A" student
-let setName item newName={item with name=newName}
+let setName item newName={item with Name=newName}
 let geo=setName student "George"
 printfn "%A" geo
