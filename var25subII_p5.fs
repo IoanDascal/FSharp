@@ -24,4 +24,5 @@ for i in 0..n-1 do
     for j in 0..m-1 do
         products.[i] <- products.[i]*matrix.[j].[i]
 let maximum=Array.max products
+printfn "The columns with the maximum product are:"
 products |> Array.iteri (fun i x -> if x=maximum then printf "%i " (i+1))
