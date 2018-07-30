@@ -7,7 +7,7 @@ numbers a and b.
 interval [a..b]. If there is no number, the function should print "NO"
 *)
 open System.IO
-let input=File.OpenText("C:/Users/Nelu/Desktop/fsvsc/FSharp/nrVar244.txt")
+let input=File.OpenText("../nrVar244.txt")
 let readLine (istr:StreamReader)=
     let inputString=istr.ReadLine()
     let inputArray=inputString.Split([|' '|])
