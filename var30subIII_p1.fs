@@ -1,25 +1,30 @@
-printf "Dati n="
-let n=int(System.Console.ReadLine())
-printf "Dati k="
-let k=int(System.Console.ReadLine())
-let sol=Array.zeroCreate<int> 10
-let valid p=
-    sol.[1]<>1
-let solutie p=
+(*
+    Generate all possible numbers with k digits from set {0,4,8}.
+Example: For n=3, k=2 ----> 40,44,48,80,84,88
+*)
+open System
+printf "Enter the number of elements from the set n="
+let n=int(Console.ReadLine())
+printf "Enter the number of elements from solution k="
+let k=int(Console.ReadLine())
+let solution=Array.zeroCreate<int> 10
+let validatePartialSolution p=
+    solution.[1]<>1
+let isCompleteSolution p=
     p=k
 
-let afisare p=
+let printSolution p=
     for i in 1..p do
-        if sol.[i]=1 then printf "0"
-        if sol.[i]=2 then printf "4"
-        if sol.[i]=3 then printf "8"
+        if solution.[i]=1 then printf "0"
+        if solution.[i]=2 then printf "4"
+        if solution.[i]=3 then printf "8"
     printfn ""
 let rec backtracking p=
     for i in 1..n do
-        sol.[p] <- i
-        if valid p then 
-            if solutie p then
-                afisare p
+        solution.[p] <- i
+        if validatePartialSolution p then 
+            if isCompleteSolution p then
+                printSolution p
                 else   
                     backtracking (p+1)
 let res=backtracking 1
