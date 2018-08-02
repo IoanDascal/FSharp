@@ -42,7 +42,7 @@ STRINGS                 : var2subII_p5, var4subII_p4, var5subII_p4, var6subII_p5
                         : var16subII_p4, var17subII_p4, var18subII_p4, var19subII_p3, var20subII_p4, var21subII_p5, var24subII_p5
 						: var26subII_p3, var28subII_p5, var29subII_p3
 TREES                   : var1subII_p4, var3subII_p2, var4subII_p2, var12subII_p3, var14subII_p4, var15subII_p2, var23subII_p3
-                        : var27subII_p2, var30subII_p3
+                        : var27subII_p2, var30subII_p3, var31subII_p2
 						
 						
 var31
