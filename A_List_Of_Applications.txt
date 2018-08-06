@@ -6,12 +6,12 @@ ARRAY                   : var1subIII_p4, var6subIII_p3, var7subIII_p3, var13subI
 ARRAY 2D                : var1subII_p5, var2subII_p4, var3subII_p5, var4subII_p5, var5subII_p5, var8subII_p5, var9subII_p5
                         : var10subII_p5, var11subII_p5, var12subII_p5, var13subII_p5, var14subII_p5, var15subII_p5, var16subII_p5
                         : var17subII_p5, var18subII_p5, var19subII_p5, var20subII_p5, var22subII_p5, var23subII_p5, var24subII_p4
-                        : var25subII_p5, var26subII_p5, var27subII_p5, var29subII_p5, var30subII_p5, var31subII_p4						
+                        : var25subII_p5, var26subII_p5, var27subII_p5, var29subII_p5, var30subII_p5, var31subII_p4, var31subIII_p4						
 ARRAY MERGE             : var8subIII_p4, var19subIII_p4
 BACKTRACKING            : var1subIII_p1, var2subIII_p1, var3subIII_p1, var5subIII_p1, var6subIII_p1, var7subIII_p2, var8subIII_p1
                         : var9subIII_p2, var10subIII_p2, var11subIII_p1, var14subIII_p1, var16subIII_p2, var17subIII_p2, var18subIII_p2
 						: var20subIII_p2, var24subIII_p1, var25subIII_p1, var26subIII_p1, var27subIII_p1, var29subIII_p1, var30subIII_p1
-						:
+						: var31subIII_p1
 CIRCULARLY LINKED LIST  : var18subII_p1, var20subII_p3
 COMPLETE BINARY TREE    : var18subII_p3
 DICTIONARY              : var10subIII_p4						
@@ -23,7 +23,9 @@ FUNCTION IMPLEMENTATION : var7subIII_p4, var9subIII_p3, var11subIII_p4, var13sub
                         : var19subIII_p3, var22subIII_p3, var23subIII_p3, var24subIII_p3, var25subIII_p3, var25subIII_p4, var26subIII_p3
                         : var26subIII_p4, var27subIII_p3, var28subIII_p4, var29subIII_p3						
 GRAPHS                  : var7subII_p3, var7subII_p4, var8subII_p1, var11subII_p1, var12subII_p1, var15subII_p4, var31SubII_p1
-LISTS                   : var6subII_p2, var12subIII_p4, var16subIII_p3, var17subIII_p3, var20subIII_p3, var20subIII_p4, var31subII_p5 
+                        : var32subII_p1
+LISTS                   : var6subII_p2, var12subIII_p4, var16subIII_p3, var17subIII_p3, var20subIII_p3, var20subIII_p4, var31subII_p5
+                        : var31subIII_p3 
 PALINDROME              : var3subIII_p4, var4subIII_p4,, var25subII_p4  
 PSEODOCODE TO F#        : var 1...100 subI_p2, 
 PRIME NUMBERS           : var2subIII_p4, var5subIII_p4, var10subIII_p3, var21subIII_p3 
@@ -34,7 +36,7 @@ RECURSIVE C++ TO F#     : var1subIII_p2, var2subIII_p2, var3subIII_p2, var4subII
                         : var8subIII_p2, var9subIII_p1, var10subIII_p1, var11subIII_p2, var12subIII_p2, var13subII_p4, var14subII_p3
 						: var14subIII_p2, var15subIII_p2, var16subIII_p1, var17subIII_p1, var18subIII_p1, var19subIII_p1, var20subIII_p1
 						: var21subIII_p2, var22subIII_p2, var23subIII_p3, var24subIII_p2, var25subIII_p2, var26subIII_p2, var27subIII_p2
-						: var28subIII_p2, var29subIII_p2, var30subIII_p2
+						: var28subIII_p2, var29subIII_p2, var30subIII_p2, var31subIII_p2
 SINGLY LINKED LIST      : var7subII_p2, var8subII_p4, var9subII_p2, var10subII_p2, var11subII_p4, var14subII_p2, var15subII_p1
                         : var28subII_p4, var30subII_p4
 STACK                   : var2subII_p3, var4subII_p3, var21subII_p4, var22subII_p1, var24subII_p3, var26subII_p4 
@@ -45,4 +47,4 @@ TREES                   : var1subII_p4, var3subII_p2, var4subII_p2, var12subII_p
                         : var27subII_p2, var30subII_p3, var31subII_p2
 						
 						
-var31
+var32
