@@ -1,31 +1,38 @@
+(*
+    File nrVar314.txt contains on the first line a value for an integer n,
+and on each of the next n lines a pair of two integers x,y. Each pair x,y
+represent the endpoints of a closed interval [x.y]. Calculate the intersection
+of all n intervals. If the intersection doesn't exist print 0.
+*)
+
 open System.IO
 let input=File.OpenText("../nrVar314.txt")
-let citireLinie (isr:StreamReader)=
-    let sir=isr.ReadLine()
-    let sir=sir.Replace(System.Environment.NewLine," ") 
-    let sir=sir.Split([|' '|])
-    sir
-let n=int((citireLinie input).[0])
-let perechi=[|for i in 1..n do  
-                 yield(Array.map int (citireLinie input))|]
-let maxim=
+let readLine (isr:StreamReader)=
+    let inputString=isr.ReadLine()
+    let inputString=inputString.Replace(System.Environment.NewLine," ") 
+    let inputArray=inputString.Split([|' '|])
+    inputArray
+let n=int((readLine input).[0])
+let pairs=[|for i in 1..n do  
+                 yield(Array.map int (readLine input))|]
+let maximum=
     let rec loop i maxi=
         match i<n with    
         | false -> maxi
-        | true -> let maxi=if maxi>perechi.[i].[0] then maxi    
+        | true -> let maxi=if maxi>pairs.[i].[0] then maxi    
                                else   
-                                   perechi.[i].[0]
+                                   pairs.[i].[0]
                   loop (i+1) maxi    
-    loop 0 perechi.[0].[0]
-let minim=
+    loop 0 pairs.[0].[0]
+let minimum=
     let rec loop i mini=
         match i<n with    
         | false -> mini
-        | true -> let mini=if mini<perechi.[i].[1] then mini    
+        | true -> let mini=if mini<pairs.[i].[1] then mini    
                                else   
-                                   perechi.[i].[1]
+                                   pairs.[i].[1]
                   loop (i+1) mini    
-    loop 0 perechi.[0].[1]
-if maxim>minim then printfn "0"
+    loop 0 pairs.[0].[1]
+if maximum>minimum then printfn "0"
     else   
-        printfn "%i  %i" maxim minim
+        printfn "%i  %i" maximum minimum
