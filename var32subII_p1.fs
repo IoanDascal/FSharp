@@ -1,5 +1,5 @@
 (*
-
+    Given a directed graph print all nodes with outdegree equal to 2.
 *)
 
 open System.Drawing
