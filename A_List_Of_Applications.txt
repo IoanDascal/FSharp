@@ -14,7 +14,9 @@ BACKTRACKING            : var1subIII_p1, var2subIII_p1, var3subIII_p1, var5subII
 						: var31subIII_p1
 CIRCULARLY LINKED LIST  : var18subII_p1, var20subII_p3
 COMPLETE BINARY TREE    : var18subII_p3
-DICTIONARY              : var10subIII_p4						
+DICTIONARY              : var10subIII_p4	
+FACTORIAL               : Factorial_tail_recursive
+FIBONACCI               : Fibonacci_tail_recursive, Fibonacci_Pattern_Matching
 FILES                   : var1subIII_p3, var2subIII_p3, var3subIII_p3, var4subIII_p3, var5subIII_p3, var8subIII_p3, var9subIII_p4
                         : var11subIII_p3, var12subIII_p3, var14subIII_p4, var15subIII_p4, var16subIII_p4, var17subIII_p4, var18subIII_p4
                         : var21subIII_p4, var22subIII_p4, var23subIII_p4, var24subIII_p4, var27subIII_p4, var30subIII_p4						
@@ -26,6 +28,8 @@ GRAPHS                  : var7subII_p3, var7subII_p4, var8subII_p1, var11subII_p
                         : var32subII_p1
 LISTS                   : var6subII_p2, var12subIII_p4, var16subIII_p3, var17subIII_p3, var20subIII_p3, var20subIII_p4, var31subII_p5
                         : var31subIII_p3 
+LUCAS FUNCTION          : Lucas
+PARSER COMBINATORS      : ParserCombinators, ParserCombinatorsEx1, ParserCombinatorsEx2
 PALINDROME              : var3subIII_p4, var4subIII_p4,, var25subII_p4  
 PSEODOCODE TO F#        : var 1...100 subI_p2, 
 PRIME NUMBERS           : var2subIII_p4, var5subIII_p4, var10subIII_p3, var21subIII_p3 
@@ -37,6 +41,7 @@ RECURSIVE C++ TO F#     : var1subIII_p2, var2subIII_p2, var3subIII_p2, var4subII
 						: var14subIII_p2, var15subIII_p2, var16subIII_p1, var17subIII_p1, var18subIII_p1, var19subIII_p1, var20subIII_p1
 						: var21subIII_p2, var22subIII_p2, var23subIII_p3, var24subIII_p2, var25subIII_p2, var26subIII_p2, var27subIII_p2
 						: var28subIII_p2, var29subIII_p2, var30subIII_p2, var31subIII_p2
+ROOT FINDING            : bisectionRoot, falsePositionRoot
 SINGLY LINKED LIST      : var7subII_p2, var8subII_p4, var9subII_p2, var10subII_p2, var11subII_p4, var14subII_p2, var15subII_p1
                         : var28subII_p4, var30subII_p4
 STACK                   : var2subII_p3, var4subII_p3, var21subII_p4, var22subII_p1, var24subII_p3, var26subII_p4 
