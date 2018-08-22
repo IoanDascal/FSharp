@@ -1,13 +1,20 @@
+(*
+    Print the content of a queue and the last extracted
+element after a sequence of operations.
+*)
 open System.Collections.Generic
-let coada=new Queue<int>()
-coada.Enqueue(3)
-coada.Enqueue(10)
-coada.Enqueue(2)
-coada.Enqueue(8)
-coada.Enqueue(6)
-coada.Dequeue() |>ignore
-coada.Enqueue(100)
-coada.Dequeue() |> ignore
-coada.Dequeue() |> ignore
-coada.Dequeue() |> ignore
-printfn "%A" coada
+let queue=new Queue<int>()
+queue.Enqueue(3)
+queue.Enqueue(10)
+queue.Enqueue(2)
+queue.Enqueue(8)
+queue.Enqueue(6)
+queue.Dequeue() |>ignore
+queue.Enqueue(100)
+queue.Dequeue() |> ignore
+queue.Dequeue() |> ignore
+let last=queue.Peek()
+queue.Dequeue() |> ignore
+printfn "The content of the queue is : %A" queue
+printfn "The last element extracted from the queue is= %i" last
+printfn "The queue contains %i elements" queue.Count
