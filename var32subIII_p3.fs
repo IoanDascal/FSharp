@@ -1,4 +1,8 @@
-let ePrim x=
+(*
+    Given an integer number x, write a function primeNumber : int -> int
+to calculate the lowest prime number bigger than x.
+*)
+let isPrime x=
     let rec loop i=
         match i<=x/2 with
         | false -> true
@@ -7,11 +11,11 @@ let ePrim x=
                   | _ -> loop (i+1)
     loop 2
 
-printf "Dati x="
+printf "Enter x="
 let x=int(System.Console.ReadLine())
-let rec calcul x=
-    if (ePrim x) then x
+let rec primeNumber x=
+    if (isPrime x) then x
         else
-            calcul (x+1)
-let res=calcul (x+1)
-printfn "Cel mai mic numar prim mai mare decat x =%i" res
+            primeNumber (x+1)
+let res=primeNumber (x+1)
+printfn "The lowest prime number bigger than x is=%i" res
