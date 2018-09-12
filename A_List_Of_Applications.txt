@@ -1,8 +1,11 @@
 # FSharp
 FSharp tests and projects
 I'am learning F# and how to use Git.
-  
-ARRAY                   : var1subIII_p4, var6subIII_p3, var7subIII_p3, var13subIII_p4, var28subIII_p3, var29subIII_p4, var30subIII_p3 
+
+ACTOR MODEL             : ActorModelEx1, ActorModelEx2_WordCounter, ActorModelEx3_gameLogic, ActorModelEx4_TryReceive
+                        : ActorModelEx5_Mailbox
+ARRAY                   : var1subIII_p4, var6subIII_p3, var7subIII_p3, var13subIII_p4, var28subIII_p3, var29subIII_p4, var30subIII_p3
+                        : Array_ParallelEx1 
 ARRAY 2D                : var1subII_p5, var2subII_p4, var3subII_p5, var4subII_p5, var5subII_p5, var8subII_p5, var9subII_p5
                         : var10subII_p5, var11subII_p5, var12subII_p5, var13subII_p5, var14subII_p5, var15subII_p5, var16subII_p5
                         : var17subII_p5, var18subII_p5, var19subII_p5, var20subII_p5, var22subII_p5, var23subII_p5, var24subII_p4
@@ -12,9 +15,12 @@ ARRAY MERGE             : var8subIII_p4, var19subIII_p4
 BACKTRACKING            : var1subIII_p1, var2subIII_p1, var3subIII_p1, var5subIII_p1, var6subIII_p1, var7subIII_p2, var8subIII_p1
                         : var9subIII_p2, var10subIII_p2, var11subIII_p1, var14subIII_p1, var16subIII_p2, var17subIII_p2, var18subIII_p2
 						: var20subIII_p2, var24subIII_p1, var25subIII_p1, var26subIII_p1, var27subIII_p1, var29subIII_p1, var30subIII_p1
-						: var31subIII_p1
+						: var31subIII_p1, Combinations, kPermutationsOfN 
+CHARTS                  : chartingEx1
 CIRCULARLY LINKED LIST  : var18subII_p1, var20subII_p3
+COMBINATIONS            : CombinationsOfNChooseK
 COMPLETE BINARY TREE    : var18subII_p3
+DATE TIME               : HelloWorld
 DICTIONARY              : var10subIII_p4	
 FACTORIAL               : Factorial_tail_recursive
 FIBONACCI               : Fibonacci_tail_recursive, Fibonacci_Pattern_Matching
@@ -27,8 +33,11 @@ FUNCTION IMPLEMENTATION : var7subIII_p4, var9subIII_p3, var11subIII_p4, var13sub
                         : var26subIII_p4, var27subIII_p3, var28subIII_p4, var29subIII_p3						
 GRAPHS                  : var7subII_p3, var7subII_p4, var8subII_p1, var11subII_p1, var12subII_p1, var15subII_p4, var31SubII_p1
                         : var32subII_p1
+GREATEST COMMON DIVISOR : cmmdc
+LAMBDA FUNCTIONS        : LambdaFunction
 LISTS                   : var6subII_p2, var12subIII_p4, var16subIII_p3, var17subIII_p3, var20subIII_p3, var20subIII_p4, var31subII_p5
-                        : var31subIII_p3 
+                        : var31subIII_p3, ListEx6_reduce, ListFold_standard_deviation, ListsEx2_combine_functions
+                        : ListsEx3_Forward_Pipe_Operator, ListsEx4_n_prime_numbers, ListsEx5_partition
 LUCAS FUNCTION          : Lucas
 OPTIONS                 : OptionTypes
 PARSER COMBINATORS      : ParserCombinators, ParserCombinatorsEx1, ParserCombinatorsEx2
