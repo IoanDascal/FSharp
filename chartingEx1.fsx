@@ -1,4 +1,4 @@
-#load "packages/packages/FSharp.Charting.0.90.14/FSharp.Charting.fsx"
+#load "../packages/packages/FSharp.Charting.0.90.14/FSharp.Charting.fsx"
 open FSharp.Charting
 
 let rnd=System.Random()
