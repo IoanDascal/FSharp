@@ -1,5 +1,10 @@
 (*
-    Given
+    Given an undirected graph, calculate:
+    a. Adjacency matrix;
+    b. Which are the nodes with the maximum degree;
+    c. Which are the nodes with the minimum degree;
+    d. The number of connected componenents;
+    e. A Hamiltonian cycle, if exists.
 *)
 
 type Edge=int*int
@@ -65,9 +70,8 @@ printfn "The number of connected components is : %i" numberOfConnectedComponents
 
 
 let hamiltonianCycle=Array.zeroCreate<int> (n+2)
-printf "Enter the start vertex :"
-let start=int(System.Console.ReadLine())
-hamiltonianCycle.[1] <- start
+
+hamiltonianCycle.[1] <- 1
 let rec nextVertex k=
     hamiltonianCycle.[k] <- (hamiltonianCycle.[k]+1)%(n+1)
     match hamiltonianCycle.[k] with
@@ -88,16 +92,19 @@ printfn "Version 1:"
 let rec getHamiltonianCycle k=
     nextVertex k
     match hamiltonianCycle.[k] with
-    | 0 -> printfn "Solution does not exist!"
+    | 0 -> printfn "There is no Hamiltonian cycle!"
     | _ -> match k=n with  
-           | true -> printfn "Hamiltonian cycle: %A" hamiltonianCycle
+           | true -> hamiltonianCycle.[n+1] <- 1
+                     printfn "Hamiltonian cycle: %A" hamiltonianCycle.[1..]
            | false -> getHamiltonianCycle (k+1)
 
 getHamiltonianCycle 2
 
 //    Vewrsion 2
-//       https://www.geeksforgeeks.org/hamiltonian-cycle-backtracking-6/     
+//       https://www.geeksforgeeks.org/hamiltonian-cycle-backtracking-6/    
 
+Array.fill hamiltonianCycle 0 (n+2) 0
+hamiltonianCycle.[1] <- 1
 ///<summary> A utility function to check if the vertex v can be added at index 'pos' in the Hamiltonian Cycle constructed so far</summary>  
 /// <returns> True or false</returns>
 let isSafe v pos=
@@ -112,7 +119,7 @@ let isSafe v pos=
 /// <returns> True or false</returns>
 let rec getHamiltonianCycle1 pos=
     // base case: If all vertices are included in Hamiltonian Cycle 
-    match pos=n with
+    match pos=n+1 with
     | true -> // And if there is an edge from the last included vertex to the first vertex
               if adjacencyMatrix.[hamiltonianCycle.[n]].[hamiltonianCycle.[1]]=1 then true else false
     | false -> // Try different vertices as a next candidate in Hamiltonian Cycle.
@@ -130,6 +137,7 @@ let rec getHamiltonianCycle1 pos=
                     | true -> false
                tryAnotherV 1
 printfn "Version 2:"
-if (getHamiltonianCycle1 1) then printfn "%A" hamiltonianCycle
+if (getHamiltonianCycle1 2) then hamiltonianCycle.[n+1] <- 1
+                                 printfn "Hamiltonian cycle: %A" hamiltonianCycle.[1..]
     else  
-        printfn "Solution does not exist!"
+        printfn "There is no Hamiltonian cycle!!"
