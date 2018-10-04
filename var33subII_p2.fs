@@ -1,32 +1,43 @@
-let tati=[8;8;0;3;4;3;4;7;1;2;3;3;7;8;3;5;6;8]
+(*
+    Given the parents array representation of a tree, write a program 
+to make a list of all descendants of a node x.
+    parents=(8;8;0;3;4;3;4;7;1;2;3;3;7;8;3;5;6;8)
+*)
 
-let descendentiDir3=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=3 then (i+1) else 0)  tati)
-let descendentiDir4=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=4 then (i+1) else 0)  tati)
-let descendentiDir6=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=6 then (i+1) else 0)  tati)
-let descendentiDir11=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=11 then (i+1) else 0)  tati)
-let descendentiDir12=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=12 then (i+1) else 0)  tati)
-let descendentiDir15=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=15 then (i+1) else 0)  tati)
-let descendentiDir5=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=5 then (i+1) else 0)  tati)
-let descendentiDir7=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=7 then (i+1) else 0)  tati)
-let descendentiDir17=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=17 then (i+1) else 0)  tati)
-let descendentiDir16=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=16 then (i+1) else 0)  tati)
-let descendentiDir8=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=8 then (i+1) else 0)  tati)
-let descendentiDir13=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=13 then (i+1) else 0)  tati)
-let descendentiDir1=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=1 then (i+1) else 0)  tati)
-let descendentiDir2=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=2 then (i+1) else 0)  tati)
-let descendentiDir14=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=14 then (i+1) else 0)  tati)
-let descendentiDir18=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=18 then (i+1) else 0)  tati)
-let descendentiDir9=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=9 then (i+1) else 0)  tati)
-let descendentiDir10=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=10 then (i+1) else 0)  tati)
-let cautaFrunze (tati:int list)=
-    let rec loop nod lista=
-        match nod<=tati.Length with
-        | false -> lista
-        | true -> match (List.tryFind (fun x -> x=nod) tati) with
-                  | None -> loop (nod+1) (nod::lista)
-                  | Some(nod) -> loop (nod+1) lista    
+open System
+printf "Enter the number of vertices n="
+let n=int(Console.ReadLine())
+let parents=[for i in 1.. n do 
+              yield(printf "parents[%i]=" i
+                    int(Console.ReadLine()))]
+printf "Enter x="
+let x=int(Console.ReadLine())
+
+let rec getDescendants parentsList descendantsList=
+    match parentsList with
+    | [] -> descendantsList
+    | hd::tail -> let descendantsListForHd=List.filter (fun x -> x<>0) (List.mapi (fun i x -> if x=hd then (i+1) else 0)  parents)
+                  getDescendants tail (descendantsList@descendantsListForHd)
+let getAllDescendantsOfX initialVertex allDescendants=
+    let descendants=getDescendants [initialVertex] []
+    let rec getAllDescendants descendants allDescendants=
+        match descendants with
+        | [] -> allDescendants
+        | dList -> let newDescendants=getDescendants dList []
+                   getAllDescendants newDescendants (newDescendants@allDescendants)
+    let allDescendantsForVertexX=getAllDescendants descendants descendants
+    allDescendantsForVertexX
+let allDescendantsList=getAllDescendantsOfX x []
+printfn "--->All descendants of node %d are: %A" x allDescendantsList
+let findLeafs (parents:int list)=
+    let rec loop node leafsList=
+        match node<=parents.Length with
+        | false -> leafsList
+        | true -> match (List.tryFind (fun x -> x=node) parents) with
+                  | None -> loop (node+1) (node::leafsList)
+                  | Some(node) -> loop (node+1) leafsList    
     loop 1 []
 
-let res=cautaFrunze tati
-printfn "%A" res
+let res=findLeafs parents
+printfn "Leafs of the tree are :%A" res
 
