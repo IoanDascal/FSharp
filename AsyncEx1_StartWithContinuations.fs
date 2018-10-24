@@ -26,7 +26,7 @@ any asynchronous computations created after this point without any specific canc
 
 open System.Windows.Forms
 
-let bufferData = Array.zeroCreate<byte> 100000000
+let bufferData = Array.zeroCreate<byte> 1000000
 
 let async1 (label:System.Windows.Forms.Label) filename =
      Async.StartWithContinuations(
