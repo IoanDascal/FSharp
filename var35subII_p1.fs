@@ -1,5 +1,8 @@
 (*
-
+    Given a graph g, detect the edges that can be eliminated from g 
+to obtain a tree.
+    Nodes={1,2,3,4,5,6,7,8}
+    Edges={[1,2], [2,3], [2,4], [4,7], [2,6], [1,5], [5,6], [6,8], [7,8]}
 *)
 
 open System.Drawing
