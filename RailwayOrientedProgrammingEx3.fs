@@ -15,7 +15,6 @@ let a=[|for i in 1..n do
 printfn "%A" a
 printf "Enter element to search, key="
 let key=int(Console.ReadLine())
-let n=a.Length
 let step=int(sqrt (float n))
 type Result<'TSuccess,'TFailure>=
     | Success of 'TSuccess
@@ -26,13 +25,13 @@ let bind processFunc lastResult=
     | Failure f -> Failure f 
 let switch processFunc lastResult=
     Success (processFunc lastResult)
-let rec startIndex stIndex nStep=
+let rec startIndex stIndex nStep (arr:int array)= 
         let index=min nStep (n-1)
-        match a.[index]<key with
+        match arr.[index]<key with
         | false -> Success stIndex
         | true -> match stIndex<n with
                   | false -> Failure (sprintf "Key not found.")
-                  | true -> startIndex nStep (nStep+step)
+                  | true -> startIndex nStep (nStep+step) arr
 let rec find index =
     match a.[fst index]=key with
     | true -> Success (fst index)
@@ -43,8 +42,8 @@ let finalIndex n stIndex=
     let stopIndex=min (n-1) (stIndex+step)
     (stIndex,stopIndex)
 let jumpSearch (arr: int array)=
-    arr
-    |> startIndex 0 step
+    arr 
+    |> startIndex 0 step 
     |> bind (switch (finalIndex n ))
     |> bind find
     |> printfn "%A"
