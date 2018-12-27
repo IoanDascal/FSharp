@@ -13,13 +13,26 @@
     And once the recursion eventually succeeds the function will return to the original instruction pointer location.
 *)
 
-let factorial x=
+let factorialAccumulator x=
     ///Keep track of both x and an accumulator value acc
-    let rec tailRecursiveFactorial x acc=
+    let rec tailRecursiveFactorialWithAccumulator x acc=
         if x<=1I then 
             acc
         else
-            tailRecursiveFactorial (x-1I) (acc*x)
-    tailRecursiveFactorial x 1I
+            tailRecursiveFactorialWithAccumulator (x-1I) (acc*x)
+    tailRecursiveFactorialWithAccumulator x 1I
 
-[1I..45I] |>Seq.iter (fun x -> printfn "Factorial de %O = %O" x (factorial x))
+printfn "Factorial using an accumulator"
+[1I..45I] |>Seq.iter (fun x -> printfn "Factorial of %O = %O" x (factorialAccumulator x))
+
+let factorialContinuations n=
+    let rec tailRecursiveFactorialWithContinuations n cont=
+        match n with
+        | n when n=1I -> cont 1I
+        | n -> tailRecursiveFactorialWithContinuations (n-1I) (fun x -> cont (n*x))
+    tailRecursiveFactorialWithContinuations n id 
+
+printfn ""
+printfn "Factorial using continuations"
+[1I..45I] |>Seq.iter (fun x -> printfn "Factorial of %O = %O" x (factorialContinuations x))
+
