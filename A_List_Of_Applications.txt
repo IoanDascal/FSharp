@@ -60,7 +60,7 @@ RECURSIVE C++ TO F#       : var1subIII_p2, var2subIII_p2, var3subIII_p2, var4sub
                           : var28subIII_p2, var29subIII_p2, var30subIII_p2, var31subIII_p2, var32subIII_p2, var33subIII_p2
 ROOT FINDING              : bisectionRoot, falsePositionRoot, NewtonRaphsonRoot
 SEARCHING                 : LinearSearch, BinarySearch, TernarySearch, JumpSearch, InterpolationSearch, ExponentialSearch, FibonacciSearch
-SORTING                   : MergeTwoSortedArrays, MergeSort
+SORTING                   : MergeTwoSortedArrays, MergeSort, BubbleSort, SelectionSort, InsertionSort, CountingSort, QuickSort
 SINGLY LINKED LIST        : var7subII_p2, var8subII_p4, var9subII_p2, var10subII_p2, var11subII_p4, var14subII_p2, var15subII_p1
                           : var28subII_p4, var30subII_p4, var34subII_p3, var35subII_p2
 STACK                     : var2subII_p3, var4subII_p3, var21subII_p4, var22subII_p1, var24subII_p3, var26subII_p4 
