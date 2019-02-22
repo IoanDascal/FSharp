@@ -118,8 +118,10 @@ let rec gameLoop((snake: Snake), apple) = async {
     else return! gameLoop(next, apple) }
 
 let snake = { Tail = [P(0,0)]; Score = 0; Dir = newDir }
-
+(*
 [<STAThread>]
 do Async.Start(gameLoop(snake, redApple))
    Application.Run(form)
-
+*)
+do Async.Start(gameLoop(snake, redApple))
+   form.ShowDialog() |> ignore
