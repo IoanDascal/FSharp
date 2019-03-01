@@ -1,4 +1,5 @@
-# FSharp
+     Read LICENCE.md
+     
 FSharp tests and projects
 I'am learning F# and how to use Git.
   
