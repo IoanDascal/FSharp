@@ -5,4 +5,4 @@ let rec cmmdc x y =
     else
         cmmdc y (x % y)
        
-//let cmmdcc= cmmdc 1024 12
+let cmmdcc= cmmdc 1024 12
