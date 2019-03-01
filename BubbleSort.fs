@@ -11,14 +11,14 @@ let vector=[|for i in 0..n-1 do
                  yield(int(Console.ReadLine()))|]
 
 printfn "The unsorted array is:%A" vector
-let bubbleSort (vector:int array)=
+let bubbleSort (vector:int [])=
     let swap i j=
         let temp=vector.[i]
         vector.[i] <- vector.[j]
         vector.[j] <- temp
     let mutable sorted=false
     let mutable i=vector.Length-1
-    while sorted=false do
+    while not sorted do
         sorted <- true
         for j=1 to i do
             if vector.[j-1]>vector.[j] then
@@ -30,15 +30,29 @@ let bubbleSort (vector:int array)=
 let sortedArray=bubbleSort vector
 printfn "The sorted array is: %A" sortedArray
 
-//For lists
-let BubbleSort (lst : list<int>) = 
+//For Lists Version 1
+let BubbleSort1 (lst : int list) = 
     let rec sort accum rev lst =
-        match lst, rev with
-        | [], true -> accum |> List.rev
-        | [], false -> accum |> List.rev |> sort [] true
-        | x::y::tail, _ when x > y -> sort (y::accum) false (x::tail)
-        | head::tail, _ -> sort (head::accum) rev tail
+        match lst with
+        | [] -> match rev with
+                | true -> accum |> List.rev
+                | false -> accum |> List.rev |> sort [] true
+        | x::y::tail when x > y -> sort ([y]@accum) false ([x]@tail)
+        | head::tail -> sort ([head]@accum) rev tail
     sort [] true lst
 
-let res=BubbleSort [45;34;2;43;12]
+let res=BubbleSort1 [45;34;2;43;12]
 printfn "%A" res
+
+//For Lists Version 2
+let BubbleSort2 (lst : int list) = 
+    let rec sort accum sorted lst =
+         match lst with
+         | [] -> match sorted with
+                 | true -> accum
+                 | false -> sort [] true accum
+         | x::y::tail when x > y -> sort (accum@[y]) false ([x]@tail)
+         | head::tail -> sort (accum@[head]) sorted tail
+    sort [] false lst
+
+printfn "%A" ([4;12;75;23;89;1;-12;34] |> BubbleSort2)
