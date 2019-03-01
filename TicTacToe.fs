@@ -3,9 +3,19 @@ module TicTacToe
     https://www.youtube.com/watch?v=UwgEggIg0K8
 *)
 
-type Letter = X | O
-type Value = Unspecified | Letter of Letter
-type OneToFive = One | Two | Three | Four | Five
+type Letter = 
+    | X 
+    | O
+type Value =
+    | Unspecified 
+    | Letter of Letter
+type OneToFive = 
+    | One 
+    | Two 
+    | Three 
+    | Four 
+    | Five
+
 type Row = Value*Value*Value*Value*Value
 type Board = Row*Row*Row*Row*Row
 type Position =
@@ -20,14 +30,14 @@ type Move =
     }
 
 let emptyBoard=
-    (Unspecified,Unspecified,Unspecified,Unspecified,Unspecified),
-    (Unspecified,Unspecified,Unspecified,Unspecified,Unspecified),
-    (Unspecified,Unspecified,Unspecified,Unspecified,Unspecified),
-    (Unspecified,Unspecified,Unspecified,Unspecified,Unspecified),
-    (Unspecified,Unspecified,Unspecified,Unspecified,Unspecified)
+    ((Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+    (Unspecified ,Unspecified, Unspecified, Unspecified, Unspecified), 
+    (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+    (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+    (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified))
 
 let select (board: Board) (position: Position) =
-    match board,position with
+    match (board, position) with
     | ((x,_,_,_,_),_,_,_,_), {Row=One; Column=One } -> x
     | ((_,x,_,_,_),_,_,_,_), {Row=One; Column=Two } -> x
     | ((_,_,x,_,_),_,_,_,_), {Row=One; Column=Three } -> x
@@ -55,21 +65,21 @@ let select (board: Board) (position: Position) =
     | (_,_,_,_,(_,_,_,_,x)), {Row=Five; Column=Five } -> x
 
 let set cellValue (board: Board) (position: Position) =
-    match board,position with
-    | ((_,v2,v3,v4,v5),r2,r3,r4,r5), {Row=One; Column=One } -> (cellValue,v2,v3,v4,v5),r2,r3,r4,r5
-    | ((v1,_,v3,v4,v5),r2,r3,r4,r5), {Row=One; Column=Two } -> (v1,cellValue,v3,v4,v5),r2,r3,r4,r5
-    | ((v1,v2,_,v4,v5),r2,r3,r4,r5), {Row=One; Column=Three } -> (v1,v2,cellValue,v4,v5),r2,r3,r4,r5
-    | ((v1,v2,v3,_,v5),r2,r3,r4,r5), {Row=One; Column=Four } -> (v1,v2,v3,cellValue,v5),r2,r3,r4,r5
-    | ((v1,v2,v3,v4,_),r2,r3,r4,r5), {Row=One; Column=Five } -> (v1,v2,v3,v4,cellValue),r2,r3,r4,r5
-    | (r1,(_,v2,v3,v4,v5),r3,r4,r5), {Row=Two; Column=One } -> r1,(cellValue,v2,v3,v4,v5),r3,r4,r5
-    | (r1,(v1,_,v3,v4,v5),r3,r4,r5), {Row=Two; Column=Two } -> r1,(v1,cellValue,v3,v4,v5),r3,r4,r5
-    | (r1,(v1,v2,_,v4,v5),r3,r4,r5), {Row=Two; Column=Three } -> r1,(v1,v2,cellValue,v4,v5),r3,r4,r5
-    | (r1,(v1,v2,v3,_,v5),r3,r4,r5), {Row=Two; Column=Four } -> r1,(v1,v2,v3,cellValue,v5),r3,r4,r5
-    | (r1,(v1,v2,v3,v4,_),r3,r4,r5), {Row=Two; Column=Five } -> r1,(v1,v2,v3,v4,cellValue),r3,r4,r5
-    | (r1,r2,(_,v2,v3,v4,v5),r4,r5), {Row=Three; Column=One } -> r1,r2,(cellValue,v2,v3,v4,v5),r4,r5
-    | (r1,r2,(v1,_,v3,v4,v5),r4,r5), {Row=Three; Column=Two } -> r1,r2,(v1,cellValue,v3,v4,v5),r4,r5
-    | (r1,r2,(v1,v2,_,v4,v5),r4,r5), {Row=Three; Column=Three } -> r1,r2,(v1,v2,cellValue,v4,v5),r4,r5
-    | (r1,r2,(v1,v2,v3,_,v5),r4,r5), {Row=Three; Column=Four } -> r1,r2,(v1,v2,v3,cellValue,v5),r4,r5
+    match (board, position) with
+    | ((_,v2,v3,v4,v5),r2,r3,r4,r5), {Row=One; Column=One } -> ((cellValue, v2, v3, v4, v5), r2, r3, r4, r5)
+    | ((v1,_,v3,v4,v5),r2,r3,r4,r5), {Row=One; Column=Two } -> ((v1, cellValue, v3, v4, v5), r2, r3, r4, r5)
+    | ((v1,v2,_,v4,v5),r2,r3,r4,r5), {Row=One; Column=Three } -> ((v1, v2, cellValue, v4, v5), r2, r3, r4, r5)
+    | ((v1,v2,v3,_,v5),r2,r3,r4,r5), {Row=One; Column=Four } -> ((v1, v2, v3, cellValue, v5), r2, r3, r4, r5)
+    | ((v1,v2,v3,v4,_),r2,r3,r4,r5), {Row=One; Column=Five } -> ((v1, v2, v3, v4, cellValue), r2, r3, r4, r5)
+    | (r1,(_,v2,v3,v4,v5),r3,r4,r5), {Row=Two; Column=One } -> (r1, (cellValue, v2, v3, v4, v5), r3, r4, r5)
+    | (r1,(v1,_,v3,v4,v5),r3,r4,r5), {Row=Two; Column=Two } -> (r1, (v1, cellValue, v3, v4, v5), r3, r4, r5)
+    | (r1,(v1,v2,_,v4,v5),r3,r4,r5), {Row=Two; Column=Three } -> (r1, (v1, v2, cellValue, v4, v5), r3, r4, r5)
+    | (r1,(v1,v2,v3,_,v5),r3,r4,r5), {Row=Two; Column=Four } -> (r1, (v1, v2, v3, cellValue, v5), r3, r4, r5)
+    | (r1,(v1,v2,v3,v4,_),r3,r4,r5), {Row=Two; Column=Five } -> (r1, (v1, v2, v3, v4, cellValue), r3, r4, r5)
+    | (r1,r2,(_,v2,v3,v4,v5),r4,r5), {Row=Three; Column=One } -> (r1, r2, (cellValue, v2, v3, v4, v5), r4, r5)
+    | (r1,r2,(v1,_,v3,v4,v5),r4,r5), {Row=Three; Column=Two } -> (r1, r2, (v1, cellValue, v3, v4, v5), r4, r5)
+    | (r1,r2,(v1,v2,_,v4,v5),r4,r5), {Row=Three; Column=Three } -> (r1, r2, (v1, v2, cellValue, v4, v5), r4, r5)
+    | (r1,r2,(v1,v2,v3,_,v5),r4,r5), {Row=Three; Column=Four } -> (r1, r2, (v1, v2, v3, cellValue, v5), r4, r5)
     | (r1,r2,(v1,v2,v3,v4,_),r4,r5), {Row=Three; Column=Five } -> r1,r2,(v1,v2,v3,v4,cellValue),r4,r5
     | (r1,r2,r3,(_,v2,v3,v4,v5),r5), {Row=Four; Column=One } -> r1,r2,r3,(cellValue,v2,v3,v4,v5),r5
     | (r1,r2,r3,(v1,_,v3,v4,v5),r5), {Row=Four; Column=Two } -> r1,r2,r3,(v1,cellValue,v3,v4,v5),r5
