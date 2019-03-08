@@ -1,4 +1,4 @@
-module TicTacToe
+
 (*
     https://www.youtube.com/watch?v=UwgEggIg0K8
 *)
@@ -104,18 +104,54 @@ let makeMove (board : Board) (move : Move ) =
 
 let waysToWin =
     [
-        {Row=One; Column=One},{Row=One; Column=Two},{Row=One; Column=Three},{Row=One; Column=Four},{Row=One; Column=Five}
-        {Row=Two; Column=One},{Row=Two; Column=Two},{Row=Two; Column=Three},{Row=Two; Column=Four},{Row=Two; Column=Five}
-        {Row=Three; Column=One},{Row=Three; Column=Two},{Row=Three; Column=Three},{Row=Three; Column=Four},{Row=Three; Column=Five}
-        {Row=Four; Column=One},{Row=Four; Column=Two},{Row=Four; Column=Three},{Row=Four; Column=Four},{Row=Four; Column=Five}
-        {Row=Five; Column=One},{Row=Five; Column=Two},{Row=Five; Column=Three},{Row=Five; Column=Four},{Row=Five; Column=Five}
-        {Row=One; Column=One},{Row=Two; Column=One},{Row=Three; Column=One},{Row=Four; Column=One},{Row=Five; Column=One}
-        {Row=One; Column=Two},{Row=Two; Column=Two},{Row=Three; Column=Two},{Row=Four; Column=Two},{Row=Five; Column=Two}
-        {Row=One; Column=Three},{Row=Two; Column=Three},{Row=Three; Column=Three},{Row=Four; Column=Three},{Row=Five; Column=Three}
-        {Row=One; Column=Four},{Row=Two; Column=Four},{Row=Three; Column=Four},{Row=Four; Column=Four},{Row=Five; Column=Four}
-        {Row=One; Column=Five},{Row=Two; Column=Five},{Row=Three; Column=Five},{Row=Four; Column=Five},{Row=Five; Column=Five}
-        {Row=One; Column=One},{Row=Two; Column=Two},{Row=Three; Column=Three},{Row=Four; Column=Four},{Row=Five; Column=Five}
-        {Row=One; Column=Five},{Row=Two; Column=Four},{Row=Three; Column=Three},{Row=Four; Column=Two},{Row=Five; Column=One}
+        {Row=One; Column=One},{Row=One; Column=Two},{Row=One; Column=Three}
+        {Row=One; Column=Two},{Row=One; Column=Three},{Row=One; Column=Four}
+        {Row=One; Column=Three},{Row=One; Column=Four},{Row=One; Column=Five}
+        {Row=Two; Column=One},{Row=Two; Column=Two},{Row=Two; Column=Three}
+        {Row=Two; Column=Two},{Row=Two; Column=Three},{Row=Two; Column=Four}
+        {Row=Two; Column=Three},{Row=Two; Column=Four},{Row=Two; Column=Five}
+        {Row=Three; Column=One},{Row=Three; Column=Two},{Row=Three; Column=Three}
+        {Row=Three; Column=Two},{Row=Three; Column=Three},{Row=Three; Column=Four}
+        {Row=Three; Column=Three},{Row=Three; Column=Four},{Row=Three; Column=Five}
+        {Row=Four; Column=One},{Row=Four; Column=Two},{Row=Four; Column=Three}
+        {Row=Four; Column=Two},{Row=Four; Column=Three},{Row=Four; Column=Four}
+        {Row=Four; Column=Three},{Row=Four; Column=Four},{Row=Four; Column=Five}
+        {Row=Five; Column=One},{Row=Five; Column=Two},{Row=Five; Column=Three}
+        {Row=Five; Column=Two},{Row=Five; Column=Three},{Row=Five; Column=Four}
+        {Row=Five; Column=Three},{Row=Five; Column=Four},{Row=Five; Column=Five}
+        {Row=One; Column=One},{Row=Two; Column=One},{Row=Three; Column=One}
+        {Row=Two; Column=One},{Row=Three; Column=One},{Row=Four; Column=One}
+        {Row=Three; Column=One},{Row=Four; Column=One},{Row=Five; Column=One}
+        {Row=One; Column=Two},{Row=Two; Column=Two},{Row=Three; Column=Two}
+        {Row=Two; Column=Two},{Row=Three; Column=Two},{Row=Four; Column=Two}
+        {Row=Three; Column=Two},{Row=Four; Column=Two},{Row=Five; Column=Two}
+        {Row=One; Column=Three},{Row=Two; Column=Three},{Row=Three; Column=Three}
+        {Row=Two; Column=Three},{Row=Three; Column=Three},{Row=Four; Column=Three}
+        {Row=Three; Column=Three},{Row=Four; Column=Three},{Row=Five; Column=Three}
+        {Row=One; Column=Four},{Row=Two; Column=Four},{Row=Three; Column=Four}
+        {Row=Two; Column=Four},{Row=Three; Column=Four},{Row=Four; Column=Four}
+        {Row=Three; Column=Four},{Row=Four; Column=Four},{Row=Five; Column=Four}
+        {Row=One; Column=Five},{Row=Two; Column=Five},{Row=Three; Column=Five}
+        {Row=Two; Column=Five},{Row=Three; Column=Five},{Row=Four; Column=Five}
+        {Row=Three; Column=Five},{Row=Four; Column=Five},{Row=Five; Column=Five}
+        {Row=One; Column=One},{Row=Two; Column=Two},{Row=Three; Column=Three}
+        {Row=Two; Column=Two},{Row=Three; Column=Three},{Row=Four; Column=Four}
+        {Row=Three; Column=Three},{Row=Four; Column=Four},{Row=Five; Column=Five}
+        {Row=One; Column=Five},{Row=Two; Column=Four},{Row=Three; Column=Three}
+        {Row=Two; Column=Four},{Row=Three; Column=Three},{Row=Four; Column=Two}
+        {Row=Three; Column=Three},{Row=Four; Column=Two},{Row=Five; Column=One}
+        {Row=Three; Column=One},{Row=Four; Column=Two},{Row=Five; Column=Three}
+        {Row=Two; Column=One},{Row=Three; Column=Two},{Row=Four; Column=Three}
+        {Row=Three; Column=Two},{Row=Four; Column=Three},{Row=Five; Column=Four}
+        {Row=One; Column=Two},{Row=Two; Column=Three},{Row=Three; Column=Four}
+        {Row=Two; Column=Three},{Row=Three; Column=Four},{Row=Four; Column=Five}
+        {Row=One; Column=Three},{Row=Two; Column=Four},{Row=Three; Column=Five}
+        {Row=Three; Column=One},{Row=Two; Column=Two},{Row=One; Column=Three}
+        {Row=Five; Column=Three},{Row=Four; Column=Four},{Row=Three; Column=Five}
+        {Row=One; Column=Four},{Row=Two; Column=Three},{Row=Three; Column=Two}
+        {Row=Two; Column=Three},{Row=Three; Column=Two},{Row=Four; Column=One}
+        {Row=Two; Column=Five},{Row=Three; Column=Four},{Row=Four; Column=Two}
+        {Row=Three; Column=Four},{Row=Four; Column=Three},{Row=Five; Column=Two}
     ]
 
 let cells =
@@ -125,13 +161,13 @@ let cells =
                 yield {Row= row; Column= column}
     ]
 
-let ``map 5`` f (a,b,c,d,e) = f a,f b,f c,f d,f e
+let ``map 3`` f (a,b,c) = f a,f b,f c
 
 let winner (board: Board) =
-    let winPaths = List.map (``map 5`` (select board)) waysToWin
-    if List.contains (Letter X, Letter X, Letter X, Letter X, Letter X) winPaths
+    let winPaths = List.map (``map 3`` (select board)) waysToWin
+    if List.contains (Letter X, Letter X, Letter X) winPaths
     then Some X
-    else if List.contains (Letter O, Letter O, Letter O, Letter O, Letter O) winPaths
+    else if List.contains (Letter O, Letter O, Letter O) winPaths
     then Some O 
     else None
 
@@ -175,7 +211,7 @@ let render ((a,b,c,d,e),(f,g,h,i,j),(k,l,m,n,o),(p,q,r,s,t),(u,v,x,y,z)) =
        (renderValue p) (renderValue q) (renderValue r) (renderValue s) (renderValue t)
        (renderValue u) (renderValue v) (renderValue x) (renderValue y) (renderValue z)
 
-type gameState = {Board: Board; WhoseTurn: Letter}
+type GameState = {Board: Board; WhoseTurn: Letter}
 
 let initialGameState = {Board=emptyBoard; WhoseTurn=X}
 
@@ -218,4 +254,51 @@ let rec playIO {Board=board;WhoseTurn=currentPlayer} =
     | Draw -> printfn "It's a draw!"
     | NoneYet -> playIO {Board=newBoard;WhoseTurn=otherPlayer currentPlayer}
 
-playIO initialGameState
+let rec playGame again=
+    match again with
+    | true -> playIO initialGameState
+              printfn "Play another game ? (y/n)"
+              let ag=System.Console.ReadKey()
+              playGame (ag.KeyChar='y')
+    | false -> ()
+
+playGame true
+
+
+
+open System.Windows.Forms
+open System.Drawing
+
+let form = new Form()
+form.BackColor <- Color.Yellow
+do form.Text <- "Hello World Form"
+
+// Menu bar, menus
+let mMain = form.Menu <- new MainMenu()
+let mFile = form.Menu.MenuItems.Add("&File")
+let miQuit = new MenuItem("&Quit")
+let _ = mFile.MenuItems.Add(miQuit)
+
+// callbacks
+do miQuit.Click.Add(fun _ -> form.Close())
+do form.Resize.Add(fun _ -> form.Invalidate());
+do form.Closing.Add (fun _ -> Application.ExitThread())
+let grf=form.CreateGraphics()
+form.MouseClick.Add(fun move -> grf.DrawArc(Pens.Aqua,Rectangle(move.X,move.Y,15,15),200.0f,-200.0f))
+//do form.Paint.Add(fun ev -> guiRefresh ev.Graphics)
+form.ShowDialog() |> ignore
+
+
+let mkMouseTracker (c : #Control) =
+  let fire,event = IEvent.create() in
+  let lastArgs = ref None in
+  c.MouseDown.Add(fun args -> lastArgs := Some args);
+  c.MouseUp  .Add(fun args -> lastArgs := None);
+  c.MouseMove.Add(fun args ->
+    match !lastArgs with
+    | Some last -> fire(last,args); lastArgs := Some args
+    | None -> ()); 
+  event
+
+let mouseEvent = mkMouseTracker form
+do mouseEvent.Add(fun (args1,args2) -> move view args1 args2)
