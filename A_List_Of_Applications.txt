@@ -36,7 +36,7 @@ FREQUENCY                 : var6subIII_p4, var14subIII_p3
 FUNCTION IMPLEMENTATION   : var7subIII_p4, var9subIII_p3, var11subIII_p4, var13subIII_p3, var15subIII_p3, var18subIII_p3, var19subIII_p2, Printfn
                           : var19subIII_p3, var22subIII_p3, var23subIII_p3, var24subIII_p3, var25subIII_p3, var25subIII_p4, var26subIII_p3
                           : var26subIII_p4, var27subIII_p3, var28subIII_p4, var29subIII_p3, var36subIII_p1
-GAMES                     : Snake, TicTacToe						
+GAMES                     : Snake, TicTacToe, FiveInARow						
 GRAPHS                    : var7subII_p3, var7subII_p4, var8subII_p1, var11subII_p1, var12subII_p1, var15subII_p4, var31SubII_p1
                           : var32subII_p1, var32subII_p2, var33subII_p1, var34subII_p1, var35subII_p1, var35subII_p4, BFS_adjacencyList
 						  : DFS_adjacencyList, var36subII_p3
