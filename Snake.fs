@@ -26,7 +26,7 @@ let redApple =   {Pos = P(15,15); Color = Color.Red
 let greenApple = {Pos = P(15,15); Color = Color.Green
                   Fun = (fun s -> {s with Score = s.Score+3})}
 
-let rng = new Random()
+let rng = Random()
 
 let dirToP = function
     | Up    ->  P(0, -1)
@@ -75,11 +75,11 @@ let eat apple (snake: Snake) =
 let hit (snake: Snake) =
     Option.isSome <| (List.tryFind ((=) (List.head snake.Tail)) <| List.tail snake.Tail)
 
-type myForm() =
+type MyForm() =
     inherit Form()
     do base.DoubleBuffered <- true
 
-let form = new myForm(Text = "Snake", ClientSize = Size(WIDTH, HEIGHT))
+let form = new MyForm(Text = "Snake", ClientSize = Size(WIDTH, HEIGHT))
 let gr = form.CreateGraphics()
 
 let mutable newDir = Right
@@ -98,7 +98,7 @@ let draw apple (snake: Snake) =
     use font = new Font("Arial", 16.0f)
 
     gr.FillRectangle(opac, 0, 0, WIDTH, HEIGHT)
-    let mines = List.map (fun (e: P) -> new Rectangle(e.X*SCALE, e.Y*SCALE, SCALE, SCALE)) snake.Tail
+    let mines = List.map (fun (e: P) -> Rectangle(e.X*SCALE, e.Y*SCALE, SCALE, SCALE)) snake.Tail
     gr.FillRectangles(black, List.toArray mines)
     gr.FillRectangle(acolor, apple.Pos.X*SCALE, apple.Pos.Y*SCALE, SCALE, SCALE)
     gr.FillRectangle(blue, (List.head snake.Tail).X*SCALE, (List.head snake.Tail).Y*SCALE, SCALE, SCALE)
