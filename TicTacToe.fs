@@ -1,7 +1,11 @@
 
 (*
     https://www.youtube.com/watch?v=UwgEggIg0K8
+    https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/members/events
+    https://blogs.msdn.microsoft.com/dsyme/2006/03/23/f-first-class-events-simplicity-and-compositionality-in-imperative-reactive-programming/
+    https://stackoverflow.com/questions/15253829/drawing-in-a-windows-form-in-f
 *)
+
 
 type Letter = 
     | X 
@@ -31,10 +35,10 @@ type Move =
 
 let emptyBoard=
     ((Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
-    (Unspecified ,Unspecified, Unspecified, Unspecified, Unspecified), 
-    (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
-    (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
-    (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified))
+     (Unspecified ,Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified))
 
 let select (board: Board) (position: Position) =
     match (board, position) with
@@ -263,42 +267,3 @@ let rec playGame again=
     | false -> ()
 
 playGame true
-
-
-
-open System.Windows.Forms
-open System.Drawing
-
-let form = new Form()
-form.BackColor <- Color.Yellow
-do form.Text <- "Hello World Form"
-
-// Menu bar, menus
-let mMain = form.Menu <- new MainMenu()
-let mFile = form.Menu.MenuItems.Add("&File")
-let miQuit = new MenuItem("&Quit")
-let _ = mFile.MenuItems.Add(miQuit)
-
-// callbacks
-do miQuit.Click.Add(fun _ -> form.Close())
-do form.Resize.Add(fun _ -> form.Invalidate());
-do form.Closing.Add (fun _ -> Application.ExitThread())
-let grf=form.CreateGraphics()
-form.MouseClick.Add(fun move -> grf.DrawArc(Pens.Aqua,Rectangle(move.X,move.Y,15,15),200.0f,-200.0f))
-//do form.Paint.Add(fun ev -> guiRefresh ev.Graphics)
-form.ShowDialog() |> ignore
-
-
-let mkMouseTracker (c : #Control) =
-  let fire,event = IEvent.create() in
-  let lastArgs = ref None in
-  c.MouseDown.Add(fun args -> lastArgs := Some args);
-  c.MouseUp  .Add(fun args -> lastArgs := None);
-  c.MouseMove.Add(fun args ->
-    match !lastArgs with
-    | Some last -> fire(last,args); lastArgs := Some args
-    | None -> ()); 
-  event
-
-let mouseEvent = mkMouseTracker form
-do mouseEvent.Add(fun (args1,args2) -> move view args1 args2)
