@@ -14,19 +14,21 @@ type Letter =
 type Value =
     | Unspecified 
     | Letter of Letter
-type OneToFive = 
+type ZeroToSix = 
+    | Zero
     | One 
     | Two 
     | Three 
     | Four 
     | Five
+    | Six
 
-type Row = Value*Value*Value*Value*Value
-type Board = Row*Row*Row*Row*Row
+type Row = Value*Value*Value*Value*Value*Value*Value
+type Board = Row*Row*Row*Row*Row*Row*Row
 type Position =
     {
-        Column : OneToFive
-        Row : OneToFive
+        Column : ZeroToSix
+        Row : ZeroToSix
     }
 type Move =
     {
@@ -35,67 +37,97 @@ type Move =
     }
 
 let emptyBoard=
-    ((Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
-     (Unspecified ,Unspecified, Unspecified, Unspecified, Unspecified), 
-     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
-     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
-     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified))
+    ((Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified ,Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified), 
+     (Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified, Unspecified))
 
 let select (board: Board) (position: Position) =
     match (board, position) with
-    | ((x,_,_,_,_),_,_,_,_), {Row=One; Column=One } -> x
-    | ((_,x,_,_,_),_,_,_,_), {Row=One; Column=Two } -> x
-    | ((_,_,x,_,_),_,_,_,_), {Row=One; Column=Three } -> x
-    | ((_,_,_,x,_),_,_,_,_), {Row=One; Column=Four } -> x
-    | ((_,_,_,_,x),_,_,_,_), {Row=One; Column=Five } -> x
-    | (_,(x,_,_,_,_),_,_,_), {Row=Two; Column=One } -> x
-    | (_,(_,x,_,_,_),_,_,_), {Row=Two; Column=Two } -> x
-    | (_,(_,_,x,_,_),_,_,_), {Row=Two; Column=Three } -> x
-    | (_,(_,_,_,x,_),_,_,_), {Row=Two; Column=Four } -> x
-    | (_,(_,_,_,_,x),_,_,_), {Row=Two; Column=Five } -> x
-    | (_,_,(x,_,_,_,_),_,_), {Row=Three; Column=One } -> x
-    | (_,_,(_,x,_,_,_),_,_), {Row=Three; Column=Two } -> x
-    | (_,_,(_,_,x,_,_),_,_), {Row=Three; Column=Three } -> x
-    | (_,_,(_,_,_,x,_),_,_), {Row=Three; Column=Four } -> x
-    | (_,_,(_,_,_,_,x),_,_), {Row=Three; Column=Five } -> x
-    | (_,_,_,(x,_,_,_,_),_), {Row=Four; Column=One } -> x
-    | (_,_,_,(_,x,_,_,_),_), {Row=Four; Column=Two } -> x
-    | (_,_,_,(_,_,x,_,_),_), {Row=Four; Column=Three } -> x
-    | (_,_,_,(_,_,_,x,_),_), {Row=Four; Column=Four } -> x
-    | (_,_,_,(_,_,_,_,x),_), {Row=Four; Column=Five } -> x
-    | (_,_,_,_,(x,_,_,_,_)), {Row=Five; Column=One } -> x
-    | (_,_,_,_,(_,x,_,_,_)), {Row=Five; Column=Two } -> x
-    | (_,_,_,_,(_,_,x,_,_)), {Row=Five; Column=Three } -> x
-    | (_,_,_,_,(_,_,_,x,_)), {Row=Five; Column=Four } -> x
-    | (_,_,_,_,(_,_,_,_,x)), {Row=Five; Column=Five } -> x
+    | ((x,_,_,_,_,_,_),_,_,_,_,_,_), {Row=Zero; Column=Zero } -> x
+    | ((_,x,_,_,_,_,_),_,_,_,_,_,_), {Row=Zero; Column=One } -> x
+    | ((_,_,x,_,_,_,_),_,_,_,_,_,_), {Row=Zero; Column=Two } -> x
+    | ((_,_,_,x,_,_,_),_,_,_,_,_,_), {Row=Zero; Column=Three } -> x
+    | ((_,_,_,_,x,_,_),_,_,_,_,_,_), {Row=Zero; Column=Four } -> x
+    | ((_,_,_,_,_,x,_),_,_,_,_,_,_), {Row=Zero; Column=Five } -> x
+    | ((_,_,_,_,_,_,x),_,_,_,_,_,_), {Row=Zero; Column=Six } -> x
+    | (_,(x,_,_,_,_,_,_),_,_,_,_,_), {Row=One; Column=Zero } -> x
+    | (_,(_,x,_,_,_,_,_),_,_,_,_,_), {Row=One; Column=One } -> x
+    | (_,(_,_,x,_,_,_,_),_,_,_,_,_), {Row=One; Column=Two } -> x
+    | (_,(_,_,_,x,_,_,_),_,_,_,_,_), {Row=One; Column=Three } -> x
+    | (_,(_,_,_,_,x,_,_),_,_,_,_,_), {Row=One; Column=Four } -> x
+    | (_,(_,_,_,_,_,x,_),_,_,_,_,_), {Row=One; Column=Five } -> x
+    | (_,(_,_,_,_,_,_,x),_,_,_,_,_), {Row=One; Column=Six } -> x
+    | (_,_,(x,_,_,_,_,_,_),_,_,_,_), {Row=Two; Column=Zero } -> x
+    | (_,_,(_,x,_,_,_,_,_),_,_,_,_), {Row=Two; Column=One } -> x
+    | (_,_,(_,_,x,_,_,_,_),_,_,_,_), {Row=Two; Column=Two } -> x
+    | (_,_,(_,_,_,x,_,_,_),_,_,_,_), {Row=Two; Column=Three } -> x
+    | (_,_,(_,_,_,_,x,_,_),_,_,_,_), {Row=Two; Column=Four } -> x
+    | (_,_,(_,_,_,_,_,x,_),_,_,_,_), {Row=Two; Column=Five } -> x
+    | (_,_,(_,_,_,_,_,_,x),_,_,_,_), {Row=Two; Column=Six } -> x
+    | (_,_,_,(x,_,_,_,_,_,_),_,_,_), {Row=Three; Column=Zero } -> x
+    | (_,_,_,(_,x,_,_,_,_,_),_,_,_), {Row=Three; Column=One } -> x
+    | (_,_,_,(_,_,x,_,_,_,_),_,_,_), {Row=Three; Column=Two } -> x
+    | (_,_,_,(_,_,_,x,_,_,_),_,_,_), {Row=Three; Column=Three } -> x
+    | (_,_,_,(_,_,_,_,x,_,_),_,_,_), {Row=Three; Column=Four } -> x
+    | (_,_,_,(_,_,_,_,_,x,_),_,_,_), {Row=Three; Column=Five } -> x
+    | (_,_,_,(_,_,_,_,_,_,x),_,_,_), {Row=Three; Column=Six } -> x
+    | (_,_,_,_,(x,_,_,_,_,_,_),_,_), {Row=Four; Column=Zero } -> x
+    | (_,_,_,_,(_,x,_,_,_,_,_),_,_), {Row=Four; Column=One } -> x
+    | (_,_,_,_,(_,_,x,_,_,_,_),_,_), {Row=Four; Column=Two } -> x
+    | (_,_,_,_,(_,_,_,x,_,_,_),_,_), {Row=Four; Column=Three } -> x
+    | (_,_,_,_,(_,_,_,_,x,_,_),_,_), {Row=Four; Column=Four } -> x
+    | (_,_,_,_,(_,_,_,_,_,x,_),_,_), {Row=Four; Column=Five } -> x
+    | (_,_,_,_,(_,_,_,_,_,_,x),_,_), {Row=Four; Column=Six } -> x
+    | (_,_,_,_,_,(x,_,_,_,_,_,_),_), {Row=Five; Column=Zero } -> x
+    | (_,_,_,_,_,(_,x,_,_,_,_,_),_), {Row=Five; Column=One } -> x
+    | (_,_,_,_,_,(_,_,x,_,_,_,_),_), {Row=Five; Column=Two } -> x
+    | (_,_,_,_,_,(_,_,_,x,_,_,_),_), {Row=Five; Column=Three } -> x
+    | (_,_,_,_,_,(_,_,_,_,x,_,_),_), {Row=Five; Column=Four } -> x
+    | (_,_,_,_,_,(_,_,_,_,_,x,_),_), {Row=Five; Column=Five } -> x
+    | (_,_,_,_,_,(_,_,_,_,_,_,x),_), {Row=Five; Column=Six } -> x
+    | (_,_,_,_,_,_,(x,_,_,_,_,_,_)), {Row=Six; Column=Zero } -> x
+    | (_,_,_,_,_,_,(_,x,_,_,_,_,_)), {Row=Six; Column=One } -> x
+    | (_,_,_,_,_,_,(_,_,x,_,_,_,_)), {Row=Six; Column=Two } -> x
+    | (_,_,_,_,_,_,(_,_,_,x,_,_,_)), {Row=Six; Column=Three } -> x
+    | (_,_,_,_,_,_,(_,_,_,_,x,_,_)), {Row=Six; Column=Four } -> x
+    | (_,_,_,_,_,_,(_,_,_,_,_,x,_)), {Row=Six; Column=Five } -> x
+    | (_,_,_,_,_,_,(_,_,_,_,_,_,x)), {Row=Six; Column=Six } -> x
 
 let set cellValue (board: Board) (position: Position) =
     match (board, position) with
-    | ((_,v2,v3,v4,v5),r2,r3,r4,r5), {Row=One; Column=One } -> ((cellValue, v2, v3, v4, v5), r2, r3, r4, r5)
-    | ((v1,_,v3,v4,v5),r2,r3,r4,r5), {Row=One; Column=Two } -> ((v1, cellValue, v3, v4, v5), r2, r3, r4, r5)
-    | ((v1,v2,_,v4,v5),r2,r3,r4,r5), {Row=One; Column=Three } -> ((v1, v2, cellValue, v4, v5), r2, r3, r4, r5)
-    | ((v1,v2,v3,_,v5),r2,r3,r4,r5), {Row=One; Column=Four } -> ((v1, v2, v3, cellValue, v5), r2, r3, r4, r5)
-    | ((v1,v2,v3,v4,_),r2,r3,r4,r5), {Row=One; Column=Five } -> ((v1, v2, v3, v4, cellValue), r2, r3, r4, r5)
-    | (r1,(_,v2,v3,v4,v5),r3,r4,r5), {Row=Two; Column=One } -> (r1, (cellValue, v2, v3, v4, v5), r3, r4, r5)
-    | (r1,(v1,_,v3,v4,v5),r3,r4,r5), {Row=Two; Column=Two } -> (r1, (v1, cellValue, v3, v4, v5), r3, r4, r5)
-    | (r1,(v1,v2,_,v4,v5),r3,r4,r5), {Row=Two; Column=Three } -> (r1, (v1, v2, cellValue, v4, v5), r3, r4, r5)
-    | (r1,(v1,v2,v3,_,v5),r3,r4,r5), {Row=Two; Column=Four } -> (r1, (v1, v2, v3, cellValue, v5), r3, r4, r5)
-    | (r1,(v1,v2,v3,v4,_),r3,r4,r5), {Row=Two; Column=Five } -> (r1, (v1, v2, v3, v4, cellValue), r3, r4, r5)
-    | (r1,r2,(_,v2,v3,v4,v5),r4,r5), {Row=Three; Column=One } -> (r1, r2, (cellValue, v2, v3, v4, v5), r4, r5)
-    | (r1,r2,(v1,_,v3,v4,v5),r4,r5), {Row=Three; Column=Two } -> (r1, r2, (v1, cellValue, v3, v4, v5), r4, r5)
-    | (r1,r2,(v1,v2,_,v4,v5),r4,r5), {Row=Three; Column=Three } -> (r1, r2, (v1, v2, cellValue, v4, v5), r4, r5)
-    | (r1,r2,(v1,v2,v3,_,v5),r4,r5), {Row=Three; Column=Four } -> (r1, r2, (v1, v2, v3, cellValue, v5), r4, r5)
-    | (r1,r2,(v1,v2,v3,v4,_),r4,r5), {Row=Three; Column=Five } -> r1,r2,(v1,v2,v3,v4,cellValue),r4,r5
-    | (r1,r2,r3,(_,v2,v3,v4,v5),r5), {Row=Four; Column=One } -> r1,r2,r3,(cellValue,v2,v3,v4,v5),r5
-    | (r1,r2,r3,(v1,_,v3,v4,v5),r5), {Row=Four; Column=Two } -> r1,r2,r3,(v1,cellValue,v3,v4,v5),r5
-    | (r1,r2,r3,(v1,v2,_,v4,v5),r5), {Row=Four; Column=Three } -> r1,r2,r3,(v1,v2,cellValue,v4,v5),r5
-    | (r1,r2,r3,(v1,v2,v3,_,v5),r5), {Row=Four; Column=Four } -> r1,r2,r3,(v1,v2,v3,cellValue,v5),r5
-    | (r1,r2,r3,(v1,v2,v3,v4,_),r5), {Row=Four; Column=Five } -> r1,r2,r3,(v1,v2,v3,v4,cellValue),r5
-    | (r1,r2,r3,r4,(_,v2,v3,v4,v5)), {Row=Five; Column=One } -> r1,r2,r3,r4,(cellValue,v2,v3,v4,v5)
-    | (r1,r2,r3,r4,(v1,_,v3,v4,v5)), {Row=Five; Column=Two } -> r1,r2,r3,r4,(v1,cellValue,v3,v4,v5)
-    | (r1,r2,r3,r4,(v1,v2,_,v4,v5)), {Row=Five; Column=Three } -> r1,r2,r3,r4,(v1,v2,cellValue,v4,v5)
-    | (r1,r2,r3,r4,(v1,v2,v3,_,v5)), {Row=Five; Column=Four } -> r1,r2,r3,r4,(v1,v2,v3,cellValue,v5)
-    | (r1,r2,r3,r4,(v1,v2,v3,v4,_)), {Row=Five; Column=Five } -> r1,r2,r3,r4,(v1,v2,v3,v4,cellValue)
+    | (v0,v1,v2,v3,v4,v5,v6), {Row=Zero; Column= _} -> (v0, v1, v2, v3, v4, v5, v6)
+    | (r0,r1,r2,r3,r4,r5,r6), {Row=_; Column=Six} -> (r0, r1, r2, r3, r4, r5, r6)
+    | (v0,v1,v2,v3,v4,v5,v6), {Row=Six; Column=_} -> (v0, v1, v2, v3, v4, v5, v6)
+    | (r0,r1,r2,r3,r4,r5,r6), {Row=_; Column=Zero} -> (r0, r1, r2, r3, r4, r5, r6)
+    | (r0,(v0,_,v2,v3,v4,v5,v6),r2,r3,r4,r5,r6), {Row=One; Column=One } -> (r0, (v0, cellValue, v2, v3, v4, v5, v6), r2, r3, r4, r5, r6)
+    | (r0,(v0,v1,_,v3,v4,v5,v6),r2,r3,r4,r5,r6), {Row=One; Column=Two } -> (r0, (v0, v1, cellValue, v3, v4, v5, v6), r2, r3, r4, r5, r6)
+    | (r0,(v0,v1,v2,_,v4,v5,v6),r2,r3,r4,r5,r6), {Row=One; Column=Three } -> (r0, (v0, v1, v2, cellValue, v4, v5, v6), r2, r3, r4, r5, r6)
+    | (r0,(v0,v1,v2,v3,_,v5,v6),r2,r3,r4,r5,r6), {Row=One; Column=Four } -> (r0, (v0, v1, v2, v3, cellValue, v5, v6), r2, r3, r4, r5, r6)
+    | (r0,(v0,v1,v2,v3,v4,_,v6),r2,r3,r4,r5,r6), {Row=One; Column=Five } -> (r0, (v0, v1, v2, v3, v4, cellValue, v6), r2, r3, r4, r5, r6)
+    | (r0,r1,(v0,_,v2,v3,v4,v5,v6),r3,r4,r5,r6), {Row=Two; Column=One } -> (r0, r1, (v0, cellValue, v2, v3, v4, v5, v6), r3, r4, r5, r6)
+    | (r0,r1,(v0,v1,_,v3,v4,v5,v6),r3,r4,r5,r6), {Row=Two; Column=Two } -> (r0, r1, (v0, v1, cellValue, v3, v4, v5, v6), r3, r4, r5, r6)
+    | (r0,r1,(v0,v1,v2,_,v4,v5,v6),r3,r4,r5,r6), {Row=Two; Column=Three } -> (r0, r1, (v0, v1, v2, cellValue, v4, v5, v6), r3, r4, r5, r6)
+    | (r0,r1,(v0,v1,v2,v3,_,v5,v6),r3,r4,r5,r6), {Row=Two; Column=Four } -> (r0, r1, (v0, v1, v2, v3, cellValue, v5, v6), r3, r4, r5, r6)
+    | (r0, r1,(v0,v1,v2,v3,v4,_,v6),r3,r4,r5,r6), {Row=Two; Column=Five } -> (r0, r1, (v0, v1, v2, v3, v4, cellValue, v6), r3, r4, r5, r6)
+    | (r0,r1,r2,(v0,_,v2,v3,v4,v5,v6),r4,r5,r6), {Row=Three; Column=One } -> (r0, r1, r2, (v0, cellValue, v2, v3, v4, v5, v6), r4, r5, r6)
+    | (r0,r1,r2,(v0,v1,_,v3,v4,v5,v6),r4,r5,r6), {Row=Three; Column=Two } -> (r0, r1, r2, (v0, v1, cellValue, v3, v4, v5, v6), r4, r5, r6)
+    | (r0,r1,r2,(v0,v1,v2,_,v4,v5,v6),r4,r5,r6), {Row=Three; Column=Three } -> (r0, r1, r2, (v0, v1, v2, cellValue, v4, v5, v6), r4, r5, r6)
+    | (r0,r1,r2,(v0,v1,v2,v3,_,v5,v6),r4,r5,r6), {Row=Three; Column=Four } -> (r0, r1, r2, (v0, v1, v2, v3, cellValue, v5, v6), r4, r5, r6)
+    | (r0,r1,r2,(v0,v1,v2,v3,v4,_,v6),r4,r5,r6), {Row=Three; Column=Five } -> (r0, r1, r2, (v0, v1, v2, v3, v4, cellValue, v6), r4, r5, r6)
+    | (r0,r1,r2,r3,(v0,_,v2,v3,v4,v5,v6),r5,r6), {Row=Four; Column=One } -> (r0, r1, r2, r3, (v0, cellValue, v2, v3, v4, v5, v6), r5, r6)
+    | (r0,r1,r2,r3,(v0,v1,_,v3,v4,v5,v6),r5,r6), {Row=Four; Column=Two } -> (r0, r1, r2, r3, (v0, v1, cellValue, v3, v4, v5, v6), r5, r6)
+    | (r0,r1,r2,r3,(v0,v1,v2,_,v4,v5,v6),r5,r6), {Row=Four; Column=Three } -> (r0, r1, r2, r3, (v0, v1 ,v2 , cellValue, v4, v5, v6), r5, r6)
+    | (r0,r1,r2,r3,(v0,v1,v2,v3,_,v5,v6),r5,r6), {Row=Four; Column=Four } -> (r0, r1, r2, r3, (v0, v1, v2, v3, cellValue, v5, v6), r5, r6)
+    | (r0,r1,r2,r3,(v0,v1,v2,v3,v4,_,v6),r5,r6), {Row=Four; Column=Five } -> (r0, r1, r2, r3, (v0, v1, v2, v3, v4, cellValue, v6), r5, r6)
+    | (r0,r1,r2,r3,r4,(v0,_,v2,v3,v4,v5,v6),r6), {Row=Five; Column=One } -> (r0, r1, r2, r3, r4, (v0, cellValue, v2, v3, v4, v5, v6), r6)
+    | (r0,r1,r2,r3,r4,(v0,v1,_,v3,v4,v5,v6),r6), {Row=Five; Column=Two } -> (r0, r1, r2, r3, r4, (v0, v1, cellValue, v3, v4, v5, v6), r6)
+    | (r0,r1,r2,r3,r4,(v0,v1,v2,_,v4,v5,v6),r6), {Row=Five; Column=Three } -> (r0, r1, r2, r3, r4, (v0, v1, v2, cellValue, v4, v5, v6), r6)
+    | (r0,r1,r2,r3,r4,(v0,v1,v2,v3,_,v5,v6),r6), {Row=Five; Column=Four } -> (r0, r1, r2, r3, r4, (v0, v1, v2, v3, cellValue, v5, v6), r6)
+    | (r0,r1,r2,r3,r4,(v0,v1,v2,v3,v4,_,v6),r6), {Row=Five; Column=Five } -> (r0, r1, r2, r3, r4, (v0, v1, v2, v3, v4, cellValue, v6), r6)
 
 let modify f (board: Board) (position: Position) =
     set (f (select board position)) board position
@@ -104,75 +136,75 @@ let placePieceIfCan piece=modify (function | Unspecified -> Letter piece | x -> 
 
 let makeMove (board : Board) (move : Move ) =
     if select board move.At = Unspecified
-    then Some <| placePieceIfCan move.Place board move.At
+    then Some (placePieceIfCan move.Place board move.At)
     else None
 
 let waysToWin =
     [
-        {Row=One; Column=One},{Row=One; Column=Two},{Row=One; Column=Three}
-        {Row=One; Column=Two},{Row=One; Column=Three},{Row=One; Column=Four}
-        {Row=One; Column=Three},{Row=One; Column=Four},{Row=One; Column=Five}
-        {Row=Two; Column=One},{Row=Two; Column=Two},{Row=Two; Column=Three}
-        {Row=Two; Column=Two},{Row=Two; Column=Three},{Row=Two; Column=Four}
-        {Row=Two; Column=Three},{Row=Two; Column=Four},{Row=Two; Column=Five}
-        {Row=Three; Column=One},{Row=Three; Column=Two},{Row=Three; Column=Three}
-        {Row=Three; Column=Two},{Row=Three; Column=Three},{Row=Three; Column=Four}
-        {Row=Three; Column=Three},{Row=Three; Column=Four},{Row=Three; Column=Five}
-        {Row=Four; Column=One},{Row=Four; Column=Two},{Row=Four; Column=Three}
-        {Row=Four; Column=Two},{Row=Four; Column=Three},{Row=Four; Column=Four}
-        {Row=Four; Column=Three},{Row=Four; Column=Four},{Row=Four; Column=Five}
-        {Row=Five; Column=One},{Row=Five; Column=Two},{Row=Five; Column=Three}
-        {Row=Five; Column=Two},{Row=Five; Column=Three},{Row=Five; Column=Four}
-        {Row=Five; Column=Three},{Row=Five; Column=Four},{Row=Five; Column=Five}
-        {Row=One; Column=One},{Row=Two; Column=One},{Row=Three; Column=One}
-        {Row=Two; Column=One},{Row=Three; Column=One},{Row=Four; Column=One}
-        {Row=Three; Column=One},{Row=Four; Column=One},{Row=Five; Column=One}
-        {Row=One; Column=Two},{Row=Two; Column=Two},{Row=Three; Column=Two}
-        {Row=Two; Column=Two},{Row=Three; Column=Two},{Row=Four; Column=Two}
-        {Row=Three; Column=Two},{Row=Four; Column=Two},{Row=Five; Column=Two}
-        {Row=One; Column=Three},{Row=Two; Column=Three},{Row=Three; Column=Three}
-        {Row=Two; Column=Three},{Row=Three; Column=Three},{Row=Four; Column=Three}
-        {Row=Three; Column=Three},{Row=Four; Column=Three},{Row=Five; Column=Three}
-        {Row=One; Column=Four},{Row=Two; Column=Four},{Row=Three; Column=Four}
-        {Row=Two; Column=Four},{Row=Three; Column=Four},{Row=Four; Column=Four}
-        {Row=Three; Column=Four},{Row=Four; Column=Four},{Row=Five; Column=Four}
-        {Row=One; Column=Five},{Row=Two; Column=Five},{Row=Three; Column=Five}
-        {Row=Two; Column=Five},{Row=Three; Column=Five},{Row=Four; Column=Five}
-        {Row=Three; Column=Five},{Row=Four; Column=Five},{Row=Five; Column=Five}
-        {Row=One; Column=One},{Row=Two; Column=Two},{Row=Three; Column=Three}
-        {Row=Two; Column=Two},{Row=Three; Column=Three},{Row=Four; Column=Four}
-        {Row=Three; Column=Three},{Row=Four; Column=Four},{Row=Five; Column=Five}
-        {Row=One; Column=Five},{Row=Two; Column=Four},{Row=Three; Column=Three}
-        {Row=Two; Column=Four},{Row=Three; Column=Three},{Row=Four; Column=Two}
-        {Row=Three; Column=Three},{Row=Four; Column=Two},{Row=Five; Column=One}
-        {Row=Three; Column=One},{Row=Four; Column=Two},{Row=Five; Column=Three}
-        {Row=Two; Column=One},{Row=Three; Column=Two},{Row=Four; Column=Three}
-        {Row=Three; Column=Two},{Row=Four; Column=Three},{Row=Five; Column=Four}
-        {Row=One; Column=Two},{Row=Two; Column=Three},{Row=Three; Column=Four}
-        {Row=Two; Column=Three},{Row=Three; Column=Four},{Row=Four; Column=Five}
-        {Row=One; Column=Three},{Row=Two; Column=Four},{Row=Three; Column=Five}
-        {Row=Three; Column=One},{Row=Two; Column=Two},{Row=One; Column=Three}
-        {Row=Five; Column=Three},{Row=Four; Column=Four},{Row=Three; Column=Five}
-        {Row=One; Column=Four},{Row=Two; Column=Three},{Row=Three; Column=Two}
-        {Row=Two; Column=Three},{Row=Three; Column=Two},{Row=Four; Column=One}
-        {Row=Two; Column=Five},{Row=Three; Column=Four},{Row=Four; Column=Three}
-        {Row=Three; Column=Four},{Row=Four; Column=Three},{Row=Five; Column=Two}
+        {Row=One; Column=Zero},{Row=One; Column=One},{Row=One; Column=Two},{Row=One; Column=Three},{Row=One; Column=Four}
+        {Row=One; Column=One},{Row=One; Column=Two},{Row=One; Column=Three},{Row=One; Column=Four},{Row=One; Column=Five}
+        {Row=One; Column=Two},{Row=One; Column=Three},{Row=One; Column=Four},{Row=One; Column=Five},{Row=One; Column=Six}
+        {Row=Two; Column=Zero},{Row=Two; Column=One},{Row=Two; Column=Two},{Row=Two; Column=Three},{Row=Two; Column=Four}
+        {Row=Two; Column=One},{Row=Two; Column=Two},{Row=Two; Column=Three},{Row=Two; Column=Four},{Row=Two; Column=Five}
+        {Row=Two; Column=Two},{Row=Two; Column=Three},{Row=Two; Column=Four},{Row=Two; Column=Five},{Row=Two; Column=Six}
+        {Row=Three; Column=Zero},{Row=Three; Column=One},{Row=Three; Column=Two},{Row=Three; Column=Three},{Row=Three; Column=Four}
+        {Row=Three; Column=One},{Row=Three; Column=Two},{Row=Three; Column=Three},{Row=Three; Column=Four},{Row=Three; Column=Five}
+        {Row=Three; Column=Two},{Row=Three; Column=Three},{Row=Three; Column=Four},{Row=Three; Column=Five},{Row=Three; Column=Six}
+        {Row=Four; Column=Zero},{Row=Four; Column=One},{Row=Four; Column=Two},{Row=Four; Column=Three},{Row=Four; Column=Four}
+        {Row=Four; Column=One},{Row=Four; Column=Two},{Row=Four; Column=Three},{Row=Four; Column=Four},{Row=Four; Column=Five}
+        {Row=Four; Column=Two},{Row=Four; Column=Three},{Row=Four; Column=Four},{Row=Four; Column=Five},{Row=Four; Column=Six}
+        {Row=Five; Column=Zero},{Row=Five; Column=One},{Row=Five; Column=Two},{Row=Five; Column=Three},{Row=Five; Column=Four}
+        {Row=Five; Column=One},{Row=Five; Column=Two},{Row=Five; Column=Three},{Row=Five; Column=Four},{Row=Five; Column=Five}
+        {Row=Five; Column=Two},{Row=Five; Column=Three},{Row=Five; Column=Four},{Row=Five; Column=Five},{Row=Five; Column=Six}
+        {Row=Zero; Column=One},{Row=One; Column=One},{Row=Two; Column=One},{Row=Three; Column=One},{Row=Four; Column=One}
+        {Row=One; Column=One},{Row=Two; Column=One},{Row=Three; Column=One},{Row=Four; Column=One},{Row=Five; Column=One}
+        {Row=Two; Column=One},{Row=Three; Column=One},{Row=Four; Column=One},{Row=Five; Column=One},{Row=Six; Column=One}
+        {Row=Zero; Column=Two},{Row=One; Column=Two},{Row=Two; Column=Two},{Row=Three; Column=Two},{Row=Four; Column=Two}
+        {Row=One; Column=Two},{Row=Two; Column=Two},{Row=Three; Column=Two},{Row=Four; Column=Two},{Row=Five; Column=Two}
+        {Row=Two; Column=Two},{Row=Three; Column=Two},{Row=Four; Column=Two},{Row=Five; Column=Two},{Row=Six; Column=Two}
+        {Row=Zero; Column=Three},{Row=One; Column=Three},{Row=Two; Column=Three},{Row=Three; Column=Three},{Row=Four; Column=Three}
+        {Row=One; Column=Three},{Row=Two; Column=Three},{Row=Three; Column=Three},{Row=Four; Column=Three},{Row=Five; Column=Three}
+        {Row=Two; Column=Three},{Row=Three; Column=Three},{Row=Four; Column=Three},{Row=Five; Column=Three},{Row=Six; Column=Three}
+        {Row=Zero; Column=Four},{Row=One; Column=Four},{Row=Two; Column=Four},{Row=Three; Column=Four},{Row=Four; Column=Four}
+        {Row=One; Column=Four},{Row=Two; Column=Four},{Row=Three; Column=Four},{Row=Four; Column=Four},{Row=Five; Column=Four}
+        {Row=Two; Column=Four},{Row=Three; Column=Four},{Row=Four; Column=Four},{Row=Five; Column=Four},{Row=Six; Column=Four}
+        {Row=Zero; Column=Five},{Row=One; Column=Five},{Row=Two; Column=Five},{Row=Three; Column=Five},{Row=Four; Column=Five}
+        {Row=One; Column=Five},{Row=Two; Column=Five},{Row=Three; Column=Five},{Row=Four; Column=Five},{Row=Five; Column=Five}
+        {Row=Two; Column=Five},{Row=Three; Column=Five},{Row=Four; Column=Five},{Row=Five; Column=Five},{Row=Six; Column=Five}
+        {Row=Zero; Column=Zero},{Row=One; Column=One},{Row=Two; Column=Two},{Row=Three; Column=Three},{Row=Four; Column=Four}
+        {Row=One; Column=One},{Row=Two; Column=Two},{Row=Three; Column=Three},{Row=Four; Column=Four},{Row=Five; Column=Five}
+        {Row=Two; Column=Two},{Row=Three; Column=Three},{Row=Four; Column=Four},{Row=Five; Column=Five},{Row=Six; Column=Six}
+        {Row=Two; Column=Zero},{Row=Three; Column=One},{Row=Four; Column=Two},{Row=Five; Column=Three},{Row=Six; Column=Four}
+        {Row=One; Column=Zero},{Row=Two; Column=One},{Row=Three; Column=Two},{Row=Four; Column=Three},{Row=Five; Column=Four}
+        {Row=Two; Column=One},{Row=Three; Column=Two},{Row=Four; Column=Three},{Row=Five; Column=Four},{Row=Six; Column=Five}
+        {Row=Zero; Column=One},{Row=One; Column=Two},{Row=Two; Column=Three},{Row=Three; Column=Four},{Row=Four; Column=Five}
+        {Row=One; Column=Two},{Row=Two; Column=Three},{Row=Three; Column=Four},{Row=Four; Column=Five},{Row=Five; Column=Six}
+        {Row=Zero; Column=Two},{Row=One; Column=Three},{Row=Two; Column=Four},{Row=Three; Column=Five},{Row=Four; Column=Six}
+        {Row=Zero; Column=Six},{Row=One; Column=Five},{Row=Two; Column=Four},{Row=Three; Column=Three},{Row=Four; Column=Two}
+        {Row=One; Column=Five},{Row=Two; Column=Four},{Row=Three; Column=Three},{Row=Four; Column=Two},{Row=Five; Column=One}
+        {Row=Two; Column=Four},{Row=Three; Column=Three},{Row=Four; Column=Two},{Row=Five; Column=One},{Row=Six; Column=Zero}
+        {Row=Four; Column=Zero},{Row=Three; Column=One},{Row=Two; Column=Two},{Row=One; Column=Three},{Row=Zero; Column=Four}
+        {Row=Zero; Column=Five},{Row=One; Column=Four},{Row=Two; Column=Three},{Row=Three; Column=Two},{Row=Four; Column=One}
+        {Row=One; Column=Four},{Row=Two; Column=Three},{Row=Three; Column=Two},{Row=Four; Column=One},{Row=Five; Column=Zero}
+        {Row=Six; Column=Two},{Row=Five; Column=Three},{Row=Four; Column=Four},{Row=Three; Column=Five},{Row=Two; Column=Six}
+        {Row=One; Column=Six},{Row=Two; Column=Five},{Row=Three; Column=Four},{Row=Four; Column=Three},{Row=Five; Column=Two}
+        {Row=Two; Column=Five},{Row=Three; Column=Four},{Row=Four; Column=Three},{Row=Five; Column=Two},{Row=Six; Column=One}
     ]
 
 let cells =
     [
-        for row in [One; Two; Three; Four; Five] do
-            for column in [One; Two; Three; Four; Five] do
+        for row in [Zero; One; Two; Three; Four; Five; Six] do
+            for column in [Zero; One; Two; Three; Four; Five; Six] do
                 yield {Row= row; Column= column}
     ]
 
-let ``map 3`` f (a,b,c) = f a,f b,f c
+let ``map 5`` f (a,b,c,d,e) = f a,f b,f c,f d,f e
 
 let winner (board: Board) =
-    let winPaths = List.map (``map 3`` (select board)) waysToWin
-    if List.contains (Letter X, Letter X, Letter X) winPaths
+    let winPaths = List.map (``map 5`` (select board)) waysToWin
+    if List.contains (Unspecified, Letter X, Letter X, Letter X, Unspecified) winPaths
     then Some X
-    else if List.contains (Letter O, Letter O, Letter O) winPaths
+    else if List.contains (Unspecified, Letter O, Letter O, Letter O, Unspecified) winPaths
     then Some O 
     else None
 
@@ -199,38 +231,46 @@ let otherPlayer = function
     | X -> O 
     | O -> X 
 
-let render ((a,b,c,d,e),(f,g,h,i,j),(k,l,m,n,o),(p,q,r,s,t),(u,v,x,y,z)) =
+let render ((a1,a2,a3,a4,a5,a6,a7),(b1,b2,b3,b4,b5,b6,b7),(c1,c2,c3,c4,c5,c6,c7),(d1,d2,d3,d4,d5,d6,d7),(e1,e2,e3,e4,e5,e6,e7),(f1,f2,f3,f4,f5,f6,f7),(g1,g2,g3,g4,g5,g6,g7)) =
     sprintf 
-        """%s | %s | %s | %s | %s
---------------------
-%s | %s | %s | %s | %s
---------------------
-%s | %s | %s | %s | %s
---------------------
-%s | %s | %s | %s | %s
---------------------
-%s | %s | %s | %s | %s"""
-       (renderValue a) (renderValue b) (renderValue c) (renderValue d) (renderValue e)
-       (renderValue f) (renderValue g) (renderValue h) (renderValue i) (renderValue j)
-       (renderValue k) (renderValue l) (renderValue m) (renderValue n) (renderValue o)
-       (renderValue p) (renderValue q) (renderValue r) (renderValue s) (renderValue t)
-       (renderValue u) (renderValue v) (renderValue x) (renderValue y) (renderValue z)
+        """%s | %s | %s | %s | %s | %s | %s
+--------------------------------
+%s | %s | %s | %s | %s | %s | %s
+--------------------------------
+%s | %s | %s | %s | %s | %s | %s
+--------------------------------
+%s | %s | %s | %s | %s | %s | %s
+--------------------------------
+%s | %s | %s | %s | %s | %s | %s
+--------------------------------
+%s | %s | %s | %s | %s | %s | %s
+--------------------------------
+%s | %s | %s | %s | %s | %s | %s"""
+       (renderValue a1) (renderValue a2) (renderValue a3) (renderValue a4) (renderValue a5) (renderValue a6) (renderValue a7)
+       (renderValue b1) (renderValue b2) (renderValue b3) (renderValue b4) (renderValue b5) (renderValue b6) (renderValue b7)
+       (renderValue c1) (renderValue c2) (renderValue c3) (renderValue c4) (renderValue c5) (renderValue c6) (renderValue c7)
+       (renderValue d1) (renderValue d2) (renderValue d3) (renderValue d4) (renderValue d5) (renderValue d6) (renderValue d7)
+       (renderValue e1) (renderValue e2) (renderValue e3) (renderValue e4) (renderValue e5) (renderValue e6) (renderValue e7)
+       (renderValue f1) (renderValue f2) (renderValue f3) (renderValue f4) (renderValue f5) (renderValue f6) (renderValue f7)
+       (renderValue g1) (renderValue g2) (renderValue g3) (renderValue g4) (renderValue g5) (renderValue g6) (renderValue g7)
 
 type GameState = {Board: Board; WhoseTurn: Letter}
 
 let initialGameState = {Board=emptyBoard; WhoseTurn=X}
 
-let parseOneToFive = function
+let parseZeroToSix = function
+    | "0" -> Some Zero
     | "1" -> Some One
     | "2" -> Some Two
     | "3" -> Some Three
     | "4" -> Some Four
     | "5" -> Some Five
+    | "6" -> Some Six
     | _ -> None
 
 let parseMove ( raw: string) =
     match raw.Split [|' '|] with
-    | [|r;c|] -> match parseOneToFive r,parseOneToFive c with
+    | [|r;c|] -> match parseZeroToSix r,parseZeroToSix c with
                  | Some row,Some column -> Some {Row=row; Column=column}
                  | _ -> None
     | _ -> None
@@ -241,8 +281,10 @@ type Status=
 
 let mutable newBoard=emptyBoard
 let mutable player=X
+let mutable lastPlayer=player
 let mutable state=Start
 let mutable gameWinner=X
+let mutable badMove=false
 
 open System.Windows.Forms
 open System.Drawing
@@ -288,13 +330,15 @@ let drawGameGrid (grf:Graphics)=
     grf.DrawLine(Pens.Brown,PointF(0.0f,400.0f),PointF(500.0f,400.0f))
 form.Paint.Add(fun _ -> drawGameGrid grf)
 
-let getCoordinatesFromOneToFive (number: OneToFive)=
+let getCoordinatesFromOneToFive (number: ZeroToSix)=
     match number with
+    | Zero -> -50.0f
     | One -> 50.0f
     | Two -> 150.0f
     | Three -> 250.0f
     | Four -> 350.0f
-    | Five -> 450.0f 
+    | Five -> 450.0f
+    | Six -> 550.0f 
 
 let drawXMove x y =
     let xPen = new Pen(Color.Green)
@@ -342,7 +386,6 @@ let findMouseCoordinates x y =
     else if x>400 && x < 500 && y >400 && y <500 then  "5 5"
     else ""
 
-//form.Text <- System.String.Format("{0},{1}",player," -- turns")
 form.MouseClick.Add(fun click -> let mouseCoord=findMouseCoordinates click.X click.Y
                                  let readMoveIO letter =
                                      let newPosition= parseMove mouseCoord
@@ -353,9 +396,12 @@ form.MouseClick.Add(fun click -> let mouseCoord=findMouseCoordinates click.X cli
                                      | Some newBoard -> printfn "%A -- %A" newMove.At.Row newMove.At.Column
                                                         drawNewMove newMove letter
                                                         printfn "%s" (render newBoard)
-                                                        player <- otherPlayer player
+                                                        if not badMove then player <- otherPlayer player
+                                                                            lastPlayer <- player
+                                                        badMove <- false
                                                         newBoard
-                                     | _ -> form.Text <- System.String.Format("{0}","Bad move! Position is occupied.")
+                                     | _ -> player <- lastPlayer
+                                            badMove <- true
                                             printfn "Bad move! Position is occupied."
                                             board
                                  let playIO {Board=board;WhoseTurn=currentPlayer} =
@@ -367,13 +413,16 @@ form.MouseClick.Add(fun click -> let mouseCoord=findMouseCoordinates click.X cli
                                                         newBoard <- emptyBoard
                                                         printfn "%s" (render emptyBoard)
                                      | Draw -> form.Text <- System.String.Format("{0}","It's a draw!")
+                                               printfn "It's a draw!"
                                                state <- Status.Stop
                                      | NoneYet -> printfn "" 
                                 
                                  if state=Status.Start then
                                      newBoard <- nextMoveIO newBoard player
                                      playIO {Board=newBoard;WhoseTurn=player}
-                                     form.Text <- System.String.Format("{0},{1}",player," --> turns")
+                                     if badMove 
+                                     then form.Text <- System.String.Format("{0},{1},{2}","Bad move! Position is occupied.   ",player," --> turns")
+                                     else form.Text <- System.String.Format("{0},{1}",player," --> turns")
                                      printfn "%i  %i" click.X click.Y
                                  else
                                      form.Text <- System.String.Format("{0},{1}",gameWinner,"  wins")
