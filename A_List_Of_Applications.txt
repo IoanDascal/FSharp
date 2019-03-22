@@ -19,7 +19,7 @@ BACKTRACKING              : var1subIII_p1, var2subIII_p1, var3subIII_p1, var5sub
                           : var9subIII_p2, var10subIII_p2, var11subIII_p1, var14subIII_p1, var16subIII_p2, var17subIII_p2, var18subIII_p2
                           : var20subIII_p2, var24subIII_p1, var25subIII_p1, var26subIII_p1, var27subIII_p1, var29subIII_p1, var30subIII_p1
                           : var31subIII_p1, var33subIII_p1, Combinations, kPermutationsOfN 
-CHARTS                    : chartingEx1, chartingEx2
+CHARTS                    : chartingEx1, chartingEx2, PieChartGUI, HelloGUI
 CIRCULARLY LINKED LIST    : var18subII_p1, var20subII_p3
 COMBINATIONS              : CombinationsOfNChooseK
 COMPLETE BINARY TREE      : var18subII_p3
