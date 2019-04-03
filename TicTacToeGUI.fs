@@ -312,9 +312,10 @@ do newGame.Click.Add(fun _ -> form.Refresh()
                               newBoard <- emptyBoard
                               form.Text <- System.String.Format("Player {0},{1}",player," --> turns"))
 
-let mHelp=form.Menu.MenuItems.Add("&Help")
+let mHelp=form.Menu.MenuItems.Add("&Game Rules")
 do mHelp.Click.Add(fun _ -> MessageBox.Show("    Players alternate turns placing a stone of their color on an empty intersection. 
-    The winner is the first player to form an unbroken chain of three stones horizontally, vertically, or diagonally. 
+    The winner is the first player to form an unbroken chain of three stones horizontally, vertically, or diagonally, 
+    and this chain must not be blocked at either end.. 
     To play a new game press: Game -> New Game 
     To quit the game press: Game -> Quit ") |> ignore)
 
