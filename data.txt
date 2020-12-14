@@ -1,0 +1,17 @@
+Number of projects : 3
+Number Of Criteria : 4
+Number of Decision Makers : 4
+Coeficients of left function :5.0 -4.0
+Coeficients of right function :-5.0 6.0
+VG,VG,G,G
+G,VG,MB,MB
+VG,G,B,VG
+VG,VG,G,G
+G,VG,MB,B
+VG,VG,G,MB
+VG,VG,B,B
+VG,VG,MB,G
+VG,VG,G,VG
+VG,G,G,VG
+VG,G,VG,G
+VG,VG,VG,VG
